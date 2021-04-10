@@ -1,3 +1,7 @@
+//Rodrigo Minoru Tamagusku
+//rodrigo.tamagusku@gmail.com
+
+//Objetivo: Criar e testar uma estrutura de dados Fila.
 #include <iostream>
 #include <time.h>
 #include <algorithm>
@@ -25,7 +29,6 @@ void Insert(int val) {
       front = 0;
       rear++;
       queue[rear] = val;
-      Display();
    }
 }
 void Delete() {
@@ -35,29 +38,29 @@ void Delete() {
    } else {
       cout<<"Element deleted from queue is : "<< queue[front] <<endl;
       front++;;
-      Display();
    }
 }
+
+void Test(){
+   Display();
+   Insert(1);Display();
+   Insert(2);Display();
+   Insert(3);Display();
+   Insert(4);Display();
+   Delete(); Display();
+   Delete(); Display();
+   Insert(5);Display();
+   Insert(6);Display();
+   Insert(7);Display();
+   Insert(8);Display();
+   Delete(); Display();
+}
 int main() {
-   //srand (time(NULL));
-   //system("PAUSE");
    queue = (int*) malloc (n*sizeof(int));
    clock_t begin = clock();
-   //cout << "Queue before Sorting: " << endl;
-   Display();
-   Insert(1);
-   Insert(2);
-   Insert(3);
-   Insert(4);
-   Delete();
-   Delete();
-   Insert(5);
-   Insert(6);
-   Insert(7);
-   Insert(8);	
+   Test();		//Aplica um teste visual
    clock_t end = clock();
    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-   //cout << endl << "Queue after Sorting: " << endl;
    cout << endl << "Time Spent: " << time_spent << endl;
    free(queue);
 }

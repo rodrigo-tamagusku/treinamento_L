@@ -1,3 +1,7 @@
+//Rodrigo Minoru Tamagusku
+//rodrigo.tamagusku@gmail.com
+
+//Objetivo: Criar e testar uma estrutura de dados Pilha.
 #include<iostream>
 #include <algorithm>
 #include<time.h>
@@ -20,7 +24,6 @@ void push(int val) {
    else {
       top++;
       stack[top]=val;
-      display();
    }
 }
 void pop() {
@@ -32,26 +35,27 @@ void pop() {
    }
 }
 
+void Test(){
+   display();
+   push(1);display();
+   push(2);display();
+   push(3);display();
+   push(4);display();
+   pop();  display();
+   pop();  display();
+   push(5);display();
+   push(6);display();
+   push(7);display();
+   push(8);display();
+   pop();  display();
+}
+
 int main() {
-   //srand (time(NULL));
-   //system("PAUSE");
    stack = (int*) malloc (n*sizeof(int));
    clock_t begin = clock();
-   //cout << "Queue before Sorting: " << endl;
-   display();
-   push(1);
-   push(2);
-   push(3);
-   push(4);
-   pop();
-   pop();
-   push(5);
-   push(6);
-   push(7);
-   push(8);	
+   Test(); 		//Aplica um teste visual
    clock_t end = clock();
    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-   //cout << endl << "Queue after Sorting: " << endl;
    cout << endl << "Time Spent: " << time_spent << endl;
    free(stack);
 }

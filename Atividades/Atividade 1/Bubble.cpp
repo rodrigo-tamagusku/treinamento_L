@@ -1,3 +1,7 @@
+//Rodrigo Minoru Tamagusku
+//rodrigo.tamagusku@gmail.com
+
+//Objetivo: Criar e testar um algoritmo Bubble Sort.
 #include<iostream>
 #include <algorithm>
 #include<time.h>
@@ -9,13 +13,12 @@ void swapping(int &a, int &b) {      //swap the content of a and b
    a = b;
    b = temp;
 }
-void display(int *array, int size) {
+void display(int *array, int size) { //only 10 first
    for(int i = 0; i<size; i++){
       cout << array[i] << " ";
       if(i >= 10-1){
       	break;
 	  }
-  	  cout << endl;
 	}
 }
 void bubbleSort(int *array, int size) {
@@ -34,15 +37,11 @@ void bubbleSort(int *array, int size) {
 int main() {
    //srand (time(NULL));
    int n;
-   //cout << "Enter the number of elements: ";
-   //cin >> n;
    n = 10000;
-   
-   int *arr;     //create an array with given number of elements
+   int *arr;    			 //create an array with given number of elements
    arr = (int*) malloc (n*sizeof(int));
-   //cout << "Enter elements:" << endl;
    for(int i = 0; i<n; i++) {
-      arr[i] = rand()%n;
+      arr[i] = rand()%n;	//random numbers 0 to n
    }
    //system("PAUSE");
    cout << "Array before Sorting: " << endl;

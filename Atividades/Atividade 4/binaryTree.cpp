@@ -1,3 +1,8 @@
+//Rodrigo Minoru Tamagusku
+//rodrigo.tamagusku@gmail.com
+
+//Objetivo: Implementar uma Estrutura de dados Árvore Binária.
+//Nota: Ver imagem ABB.png como referência visual
 #include <stdlib.h>
 #include <iostream>
 
@@ -19,7 +24,7 @@ void createTree(struct Tree *T){
 
 // New node creation
 struct node *newNode(int data) {
-  struct node *node = (struct node *)malloc(sizeof(struct node));
+  node *node = (struct node *)malloc(sizeof(node));
   node->data = data;
   node->left = NULL;
   node->right = NULL;
@@ -27,7 +32,7 @@ struct node *newNode(int data) {
 }
 
 // Traverse Preorder
-void traversePreOrder(struct node *temp) {
+void traversePreOrder(node *temp) {
   if (temp != NULL) {
     cout << " " << temp->data;
     traversePreOrder(temp->left);
@@ -36,7 +41,7 @@ void traversePreOrder(struct node *temp) {
 }
 
 // Traverse Inorder
-void traverseInOrder(struct node *temp) {
+void traverseInOrder(node *temp) {
   if (temp != NULL) {
     traverseInOrder(temp->left);
     cout << " " << temp->data;
@@ -45,7 +50,7 @@ void traverseInOrder(struct node *temp) {
 }
 
 // Traverse Postorder
-void traversePostOrder(struct node *temp) {
+void traversePostOrder(node *temp) {
   if (temp != NULL) {
     traversePostOrder(temp->left);
     traversePostOrder(temp->right);
@@ -55,7 +60,7 @@ void traversePostOrder(struct node *temp) {
 
 node* insertOrdered(node *no,int val){
    if(no==NULL){ //achei o lugar
-   	  struct node *newNode = (struct node *)malloc(sizeof(struct node));
+   	  node *newNode = (node *)malloc(sizeof(node));
    	  newNode->data=val;
    	  newNode->left=NULL;
    	  newNode->right=NULL;
@@ -65,21 +70,18 @@ node* insertOrdered(node *no,int val){
    }
    else{   //procura o lugar
    	  if(no->data==val){
-   	  	//cout << no->data << " Igual que " << val << endl;
    	  	if(no->left==NULL){
    	  	   no->left = insertOrdered(no->left,val);
 		}
 		else insertOrdered(no->left,val);
 	  }
 	  else if(no->data>val){
-	  	//cout << no->data << " Maior que " << val << endl;
 	  	if(no->left==NULL){
    	  	   no->left = insertOrdered(no->left,val);
 		}
 		else insertOrdered(no->left,val);
 	  }
 	  else if(no->data<val){
-	    //cout << no->data << " Menor que " << val << endl;
 	    if(no->right==NULL){
    	  	   no->right = insertOrdered(no->right,val);
 		}
@@ -105,10 +107,16 @@ void PostOrder(Tree *T){
 	traversePostOrder(T->root);
 }
 
-node* minValueNode(struct node* N){
-   struct node* current = N;
+node* minValueNode(node* N){
+   node* current = N;
    while (current && current->left != NULL)
       current = current->left;
+   return current;
+}
+node* maxValueNode(node* N){
+   node* current = N;
+   while (current && current->right != NULL)
+      current = current->right;
    return current;
 }
 
@@ -134,38 +142,80 @@ node* deleteNode(node *N, int key){
          return temp;
       }											//Achei o nó N com key, mas ele tem as duas subárvore esquerda e direita não nulas
       node* temp = minValueNode(N->right);		//Escolho olhar na direita. Busco o nó que tem o menor valor pra pendurar no lugar.
-      N->data = temp->data;							//troco os valores
+      if(temp==NULL){
+      	temp=maxValueNode(N->left);
+      	if(temp!=NULL){
+      		N->data=temp->data;
+      		N->left=deleteNode(N->left,temp->data);
+		}
+	  }
+	  else{
+	  N->data = temp->data;							//troco os valores
       N->right = deleteNode(N->right, temp->data);	//deleto o nó que tinha o menor valor procurado.
-    }
+      }
+	}
     return N;
 }
 
 void deleteValueFromTree(Tree *T, int value){
 	deleteNode(T->root,value);
 }
-
+void testTree(Tree *T){
+	insertTree(T,8);
+	insertTree(T,4);
+	insertTree(T,2);
+	cout << "\nPreorder traversal: ";
+	PreOrder(T);
+	cout << "\nInorder traversal: ";
+	InOrder(T);
+	cout << "\nPostorder traversal: ";
+	PostOrder(T);
+	insertTree(T,1);
+	insertTree(T,3);
+	insertTree(T,6);
+	insertTree(T,5);
+	insertTree(T,7);
+	insertTree(T,12);
+	insertTree(T,10);
+	insertTree(T,9);
+	insertTree(T,11);
+	insertTree(T,14);
+	insertTree(T,13);
+	insertTree(T,15);
+	cout << "\n\nPreorder traversal: ";
+	PreOrder(T);
+	cout << "\nInorder traversal: ";
+	InOrder(T);
+	cout << "\nPostorder traversal: ";
+	PostOrder(T);
+	//Aqui tem imagem de referência ABB.png
+	deleteValueFromTree(T,8);
+	deleteValueFromTree(T,9);
+	deleteValueFromTree(T,5);
+	deleteValueFromTree(T,12);
+	deleteValueFromTree(T,10);
+	deleteValueFromTree(T,11);
+	deleteValueFromTree(T,1);
+	deleteValueFromTree(T,6);
+	deleteValueFromTree(T,2);
+	cout << "\n\nPreorder traversal: ";
+	PreOrder(T);
+	cout << "\nInorder traversal: ";
+	InOrder(T);
+	cout << "\nPostorder traversal: ";
+	PostOrder(T);
+	deleteValueFromTree(T,3);
+	deleteValueFromTree(T,7);
+	deleteValueFromTree(T,4);
+	deleteValueFromTree(T,15);
+	deleteValueFromTree(T,14);
+	//deleteValueFromTree(T,13);		//Nota: Remover o último dá problema. Provavelmente o T->root não fica NULL quando devia
+}
 int main() {
 	Tree arvoreBin;
 	createTree(&arvoreBin);
-	insertTree(&arvoreBin,8);
-	insertTree(&arvoreBin,4);
-	insertTree(&arvoreBin,2);
-	insertTree(&arvoreBin,1);
-	insertTree(&arvoreBin,3);
-	insertTree(&arvoreBin,6);
-	insertTree(&arvoreBin,5);
-	insertTree(&arvoreBin,7);
-	insertTree(&arvoreBin,12);
-	insertTree(&arvoreBin,10);
-	insertTree(&arvoreBin,9);
-	insertTree(&arvoreBin,11);
-	insertTree(&arvoreBin,14);
-	insertTree(&arvoreBin,13);
-	insertTree(&arvoreBin,15);
-	deleteValueFromTree(&arvoreBin,8);
-	deleteValueFromTree(&arvoreBin,9);
-	//deleteValueFromTree(&arvoreBin,5);
-	cout << "preorder traversal: ";
+	testTree(&arvoreBin);
+	cout << "\n\nPreorder traversal: ";
 	PreOrder(&arvoreBin);
 	cout << "\nInorder traversal: ";
 	InOrder(&arvoreBin);

@@ -1,3 +1,7 @@
+//Rodrigo Minoru Tamagusku
+//rodrigo.tamagusku@gmail.com
+
+//Objetivo: Criar e testar uma estrutura de dados Lista simples encadeada.
 #include<iostream>
 #include <algorithm>
 #include<time.h>
@@ -13,10 +17,6 @@ struct Lista{
 	struct Node *inicio, *fim;
 	int tamanho;
 };
-
-//Lista.tamanho;
-
-//struct Node* lista = NULL; //head
 
 void display(Lista *L) {
    struct Node* ptr;
@@ -48,7 +48,6 @@ void insertFirst(Lista *L,int val) {
    newnode->data = val;
    newnode->next = L->inicio;
    L->inicio = newnode;
-   display(L);
 }
 void insertLast(Lista *L,int val) {
    struct Node* newnode = (struct Node*) malloc(sizeof(struct Node));
@@ -60,7 +59,6 @@ void insertLast(Lista *L,int val) {
    newnode->data = val;
    newnode->next = NULL;
    L->fim=newnode;
-   display(L);
 }
 
 void removeFirst(Lista *L) {
@@ -76,7 +74,6 @@ void removeFirst(Lista *L) {
       free(ptr);
       ptr=NULL;
    }
-   display(L);
 }
 void removeLast(Lista *L) {
    struct Node* ptr=L->inicio;
@@ -93,31 +90,27 @@ void removeLast(Lista *L) {
 	  free(L->fim);
 	  L->fim=ptr;
 	}
-	display(L);
 }
-
+void test(Lista *L){
+   display(L);
+   insertFirst(L,1);display(L);
+   insertFirst(L,2);display(L);
+   insertFirst(L,3);display(L);
+   insertFirst(L,4);display(L);
+   removeFirst(L);  display(L);
+   insertLast(L,5); display(L);
+   insertLast(L,6); display(L);
+   insertLast(L,7); display(L);
+   insertLast(L,8); display(L);
+   removeLast(L);   display(L);
+   insertLast(L,9); display(L);
+}
 int main() {
-   //srand (time(NULL));
-   //system("PAUSE");
    Lista L;
    createList(&L);
-   
    clock_t begin = clock();
-   //cout << "Queue before Sorting: " << endl;
-   display(&L);
-   insertFirst(&L,1);
-   insertFirst(&L,2);
-   insertFirst(&L,3);
-   insertFirst(&L,4);
-   removeFirst(&L);
-   insertLast(&L,5);
-   insertLast(&L,6);
-   insertLast(&L,7);
-   insertLast(&L,8);	
-   removeLast(&L);
-   insertLast(&L,9);	
+   test(&L);
    clock_t end = clock();
    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-   //cout << endl << "Queue after Sorting: " << endl;
    cout << endl << "Time Spent: " << time_spent << endl;
 }

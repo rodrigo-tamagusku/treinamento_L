@@ -1,3 +1,7 @@
+//Rodrigo Minoru Tamagusku
+//rodrigo.tamagusku@gmail.com
+
+//Objetivo: Criar e testar um algoritmo Selection Sort.
 #include<iostream>
 #include <algorithm>
 #include<time.h>
@@ -9,13 +13,12 @@ void swapping(int &a, int &b) {         //swap the content of a and b
    a = b;
    b = temp;
 }
-void display(int *array, int size) {
+void display(int *array, int size) { 	//only 10 first
    for(int i = 0; i<size; i++){
       cout << array[i] << " ";
       if(i >= 10-1){
       	break;
 	  }
-  	  cout << endl;
 	}
 }
 void selectionSort(int *array, int size) {
@@ -33,9 +36,7 @@ void selectionSort(int *array, int size) {
 int main() {
    //srand (time(NULL));
    int n;
-   //cout << "Enter the number of elements: ";
-   //cin >> n;
-   n = 100000;
+   n = 10000;
    int *arr;     //create an array with given number of elements
    arr = (int*) malloc (n*sizeof(int));
    for(int i = 0; i<n; i++) {

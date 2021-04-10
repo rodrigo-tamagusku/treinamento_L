@@ -1,3 +1,7 @@
+//Rodrigo Minoru Tamagusku
+//rodrigo.tamagusku@gmail.com
+
+//Objetivo: Criar e testar um algoritmo Quick Sort.
 #include<iostream>
 #include <algorithm>
 #include<time.h>
@@ -17,7 +21,6 @@ void display(int *array, int size) {
       if(i >= 10-1){
       	break;
 	  }
-  	  //cout << endl;
 	}
 }
 
@@ -59,16 +62,12 @@ void quickSort(int *array, int left, int right) {
 int main() {
     //srand (time(NULL));
    int n;
-   //cout << "Enter the number of elements: ";
-   //cin >> n;
    n = 1000;
    int *arr;     //create an array with given number of elements
    arr = (int*) malloc (n*sizeof(int));
-   //cout << "Enter elements:" << endl;
    for(int i = 0; i<n; i++) {
       arr[i] = rand()%n;
    }
-   //system("PAUSE");
    cout << "Array before Sorting: " << endl;
    display(arr, n);
 	clock_t begin = clock();   
