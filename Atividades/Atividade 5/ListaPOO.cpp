@@ -354,4 +354,6 @@ int main() {
 		   	  option=0;
 	   }
    } while(option!=0);
+   cout << endl;
+   system("PAUSE");
 }

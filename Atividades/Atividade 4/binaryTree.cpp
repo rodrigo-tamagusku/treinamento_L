@@ -98,13 +98,13 @@ void insertTree(Tree *T,int val){
 }
 
 void PreOrder(Tree *T){
-	traversePreOrder(T->root);
+	traversePreOrder(T->root);	//Pode ser usado para duplicar uma árvore. Cria-se um array e se insere numa árvore vazia.
 }
 void InOrder(Tree *T){
-	traverseInOrder(T->root);
+	traverseInOrder(T->root);	//Pode ser usado para imprimir em ordem crescente.
 }
 void PostOrder(Tree *T){
-	traversePostOrder(T->root);
+	traversePostOrder(T->root); //Pode ser usado para deletar a árvore, pois acessa folhas antes dos demais.
 }
 
 node* minValueNode(node* N){
@@ -221,5 +221,7 @@ int main() {
 	InOrder(&arvoreBin);
 	cout << "\nPostorder traversal: ";
 	PostOrder(&arvoreBin);
+   cout << endl<<endl;
+   system("PAUSE");
 
 }

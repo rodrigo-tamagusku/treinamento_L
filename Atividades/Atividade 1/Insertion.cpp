@@ -29,7 +29,6 @@ void insertionSort(int *array, int size) {
    }
 }
 int main() {
-   //srand (time(NULL));
    int n;
    n = 100;
    int *arr;     //create an array with given number of elements
@@ -47,4 +46,6 @@ int main() {
    display(arr, n);
    cout << endl << "Time Spent: " << time_spent << endl;
    free(arr);
+   cout << endl;
+   system("PAUSE");
 }

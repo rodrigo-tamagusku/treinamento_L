@@ -78,4 +78,6 @@ int main() {
    display(arr, n);
    cout << endl << "Time Spent: " << time_spent << endl;
    free(arr);
+   cout << endl;
+   system("PAUSE");
 }

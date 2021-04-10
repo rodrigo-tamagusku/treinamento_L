@@ -34,7 +34,6 @@ void selectionSort(int *array, int size) {
 }
 
 int main() {
-   //srand (time(NULL));
    int n;
    n = 10000;
    int *arr;     //create an array with given number of elements
@@ -42,7 +41,6 @@ int main() {
    for(int i = 0; i<n; i++) {
       arr[i] = rand()%n;
    }
-   //system("PAUSE");
    cout << "Array before Sorting: " << endl;
    display(arr, n);  
    clock_t begin = clock();
@@ -53,4 +51,6 @@ int main() {
    display(arr, n);
    cout << endl << "Time Spent: " << time_spent << endl;
    free(arr);
+   cout << endl;
+   system("PAUSE");
 }

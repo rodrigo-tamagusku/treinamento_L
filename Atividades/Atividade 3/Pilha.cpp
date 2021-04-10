@@ -58,4 +58,6 @@ int main() {
    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
    cout << endl << "Time Spent: " << time_spent << endl;
    free(stack);
+   cout << endl;
+   system("PAUSE");
 }

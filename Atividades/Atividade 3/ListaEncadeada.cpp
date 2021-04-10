@@ -19,7 +19,7 @@ struct Lista{
 };
 
 void display(Lista *L) {
-   struct Node* ptr;
+   Node* ptr;
    if(L->inicio==NULL)
    cout<<"List is empty";
    else {
@@ -33,7 +33,20 @@ void display(Lista *L) {
    cout<<endl;
 }
 
-//void tamanho(){}
+int tamanho(Lista *L){
+   Node* ptr;
+   if(L->inicio==NULL)
+   		return 0;
+   else {
+   	  int contador = 0;
+      ptr = L->inicio;
+      while (ptr != L->fim->next) {
+         contador++;
+         ptr = ptr->next;
+      }
+      return contador;
+   }
+}
 
 void createList(struct Lista *L){
 	L->inicio=NULL;
@@ -81,7 +94,7 @@ void removeLast(Lista *L) {
    cout<<"Empty"<<endl;
    else {
    	  while(ptr->next!=L->fim){ //chego no penúltimo
-   	  	 ptr=ptr->next;
+   	  	 ptr=ptr->next;			//Isso poderia ser melhor se fosse duplamente encadeada
    	  }
       cout<<"The removed element is "<< ptr->next->data <<endl;
       if(L->inicio->next==NULL){ //1 elemento só
@@ -113,4 +126,6 @@ int main() {
    clock_t end = clock();
    double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
    cout << endl << "Time Spent: " << time_spent << endl;
+   cout << endl;
+   system("PAUSE");
 }
