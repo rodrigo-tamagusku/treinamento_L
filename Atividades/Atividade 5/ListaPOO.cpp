@@ -2,10 +2,10 @@
 //rodrigo.tamagusku@gmail.com
 
 //Objetivo: Orientação a objetos: implementar as estruturas de dados anteriores com coneitos de OO: herança, sobrecarga de métodos, sobrecarga de operadores, polimorfismo
-//Herança: Check (Pilha é Lista e Fila é Lista, porém tem métodos a mais).
+//Herança: Check (Pilha é Lista e Fila é Lista).
 //Sobrecarga de Métodos: Check (Construtor de Node). No insertFirst usa o construtor sem nada. No insertLast usa o construtor que leva int.
 //Sobrecarga de Operadores: Check (Fila-- e Pilha--)
-//Polimorfismo: Check (Função display, diferente pra se for lista, pilha ou fila)
+//Polimorfismo: Check (Função display, diferente pra se for lista, pilha ou fila também com insertFirst na pilha e insertLast na Fila)
 #include<iostream>
 #include <algorithm>
 #include<time.h>
@@ -37,22 +37,23 @@ class Lista{
 		virtual void display();
 		int tamanho();
 		Lista();
-		void insertFirst(int val);
-		void insertLast(int val);
 		void removeFirst();
 		Node* getFirst();
 		void setFirst(Node* N);
-		Node* getLast();
 		void setLast(Node* N);
 		void rotinaTeste();
+		Node* getLast();
 	private:
 		Node *inicio;
 		Node *fim;
-		void removeLast();
+		void insertFirst(int val);
+		void insertLast(int val);
+		virtual void removeLast();
 };
 
 class Pilha: public Lista{
 	public:
+		void insertFirst(int);
 		void display();
 		Pilha();
 		void operator--();
@@ -62,6 +63,7 @@ class Fila: public Lista{
 		void display();
 		Fila();
 		void operator--();
+		void insertLast(int);
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -215,6 +217,18 @@ void Lista::rotinaTeste(){
 //////////////Pilha
 ////////////////////////////////////////////////////////////////////////////////////
 
+void Pilha::insertFirst(int val){
+   Node* newnode = new Node();
+   /*		//não é necessário na pilha
+   if(getLast()==NULL){ //se vazio
+   	  setLast(newnode);
+   }
+   */
+   newnode->setData(val);
+   newnode->setNext(getFirst());
+   setFirst(newnode);
+}
+
 void Pilha::display(){
    Pilha* aux = new Pilha;	//Pilha auxiliar para armazenar a Pilha principal. Ordem de O(n). Para manter a inserção e remoção na frente
    //Node* ptr;
@@ -264,6 +278,25 @@ void Pilha::operator--(){
 ////////////////////////////////////////////////////////////////////////////////////
 //////////////Fila
 ////////////////////////////////////////////////////////////////////////////////////
+/*
+Node* Fila::getLast(){
+	return fim; 	//Dá problema, pois fim é private na classe Lista.
+}
+*/
+
+void Fila::insertLast(int val){
+	//Node* newnode = (Node*) malloc(sizeof(Node));
+   Node* newnode = new Node(val);
+   Node* ptr=getLast();
+   if(getFirst()==NULL){ //se vazio
+   	  setFirst(newnode);
+   }
+   else 
+   	  ptr->setNext(newnode);
+   //newnode->setData(val);
+   newnode->setNext(NULL);
+   setLast(newnode);
+}
 
 void Fila::display(){
    Fila* aux = new Fila;	//Fila auxiliar para armazenar a fila principal. Ordem de O(n). Para manter a inserção atrás e remoção na frente

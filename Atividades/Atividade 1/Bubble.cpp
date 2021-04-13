@@ -4,7 +4,6 @@
 //Objetivo: Criar e testar um algoritmo Bubble Sort.
 #include<iostream>
 #include <algorithm>
-#include<time.h>
 
 using namespace std;
 void swapping(int &a, int &b) {      //swap the content of a and b
@@ -34,24 +33,65 @@ void bubbleSort(int *array, int size) {
          break;       // No swap in this pass, so array is sorted
    }
 }
+int getInt(){
+	int n;
+	cin >> n;
+	while (cin.fail()){
+		cin.clear();
+		cin.ignore();
+		cout << "Valor invalido. Digite um numero inteiro: ";
+		cin >> n;
+	}
+	return n;
+}
+
 int main() {
    int n;
-   n = 10000;
+   int option=0;
    int *arr;    			 //create an array with given number of elements
-   arr = (int*) malloc (n*sizeof(int));
-   for(int i = 0; i<n; i++) {
-      arr[i] = rand()%n;	//random numbers 0 to n
-   }
-   cout << "Array before Sorting: " << endl;
-   display(arr, n);
-	clock_t begin = clock();
-   bubbleSort(arr, n);
-   	clock_t end = clock();
-	double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-   cout << endl << "Array after Sorting: " << endl;
-   display(arr, n);
-   cout << endl << "Time Spent: " << time_spent << endl;
-   free(arr);
-   cout << endl;
+   do{
+	   cout << "Escolha como usar o Bubble Sort: " << endl;
+	   cout << "   1 - Entrar com dados manuais" << endl;
+	   cout << "   2 - Testar exemplo automatico " << endl;
+	   //cout << "   3 - ?" << endl;
+	   cout << "   0 - Sair " << endl;
+	   //cin >> option;
+	   option = getInt();
+	   system("CLS");
+	   switch(option){
+	   	   case 1:
+			  cout << "Entre com a quantidade de elementos: ";
+			  n = getInt();
+			  cout << "Entre com elementos: " << endl;
+			  arr = (int*) malloc (n*sizeof(int));
+		      for(int i = 0; i<n; i++) {
+		      	 arr[i]=getInt();
+		         //cin >> arr[i];
+		      }
+		      cout << "Array before Sorting: " << endl;
+		      display(arr, n);
+		      bubbleSort(arr, n);
+   		      cout << endl << "Array after Sorting: " << endl;
+   		      display(arr, n);
+   		      cout << endl <<endl;
+			  break;
+		   case 2:
+			   n = 1000;
+		   	   arr = (int*) malloc (n*sizeof(int));
+			   for(int i = 0; i<n; i++) {
+			      arr[i] = rand()%n;	//random numbers 0 to n
+			   }
+			   cout << "Array before Sorting: " << endl;
+			   display(arr, n);
+			   bubbleSort(arr, n);
+			   cout << endl << "Array after Sorting: " << endl;
+			   display(arr, n);
+			   free(arr);
+			   cout << endl <<endl;
+		   	  break;		   	  
+		   default:
+		   	  option=0;
+	   }
+   } while(option!=0);
    system("PAUSE");
 }

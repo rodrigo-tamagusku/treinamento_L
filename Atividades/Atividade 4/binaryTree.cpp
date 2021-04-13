@@ -121,8 +121,8 @@ node* maxValueNode(node* N){
 }
 
 node* deleteNode(node *N, int key){
-	if(N==NULL){	//não tem o key na subárvore
-	   return N;
+	if(N==NULL){				//Se cheguei em um nulo
+	   return N;				//não tem o key na subárvore
 	}
     if (key < N->data)							//Se meu nó atual é maior que key, procuro key na subárvore à esquerda
          N->left = deleteNode(N->left, key);
@@ -130,13 +130,13 @@ node* deleteNode(node *N, int key){
          N->right = deleteNode(N->right, key);
     else{										//Se achei o nó N com key
       if (N->left == NULL){						//Se achei o nó N com key, e ele não tem esquerda
-         node *temp = N->right;					//Reconstruo a subárvore sem problemas
+		 node *temp = N->right;					//Reconstruo a subárvore sem problemas
          free(N);
          N=NULL;
          return temp;
       }
       else if (N->right == NULL){				//Se achei o nó N com key, e ele não tem direita
-         node *temp = N->left;					//Reconstruo a subárvore sem problemas
+		 node *temp = N->left;					//Reconstruo a subárvore sem problemas
          free(N);
          N=NULL;
          return temp;
@@ -160,6 +160,15 @@ node* deleteNode(node *N, int key){
 void deleteValueFromTree(Tree *T, int value){
 	deleteNode(T->root,value);
 }
+
+void deleteTree(Tree *T){
+	cout <<"Deletando arvore" <<endl;
+	while(T->root!=NULL){
+		cout << "Deletado valor " << T->root->data << endl;
+		T->root = deleteNode(T->root,T->root->data);
+	}
+}
+
 void testTree(Tree *T){
 	insertTree(T,8);
 	insertTree(T,4);
@@ -210,18 +219,19 @@ void testTree(Tree *T){
 	deleteValueFromTree(T,15);
 	deleteValueFromTree(T,14);
 	//deleteValueFromTree(T,13);		//Nota: Remover o último dá problema. Provavelmente o T->root não fica NULL quando devia
+	cout << "\n\nPreorder traversal: ";
+	PreOrder(T);
+	cout << "\nInorder traversal: ";
+	InOrder(T);
+	cout << "\nPostorder traversal: ";
+	PostOrder(T);
 }
 int main() {
 	Tree arvoreBin;
 	createTree(&arvoreBin);
 	testTree(&arvoreBin);
-	cout << "\n\nPreorder traversal: ";
-	PreOrder(&arvoreBin);
-	cout << "\nInorder traversal: ";
-	InOrder(&arvoreBin);
-	cout << "\nPostorder traversal: ";
-	PostOrder(&arvoreBin);
    cout << endl<<endl;
+   deleteTree(&arvoreBin);
    system("PAUSE");
 
 }
