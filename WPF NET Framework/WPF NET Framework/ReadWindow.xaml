@@ -1,0 +1,21 @@
+﻿<Window x:Class="WPF_NET_Framework.ReadWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_NET_Framework"
+        mc:Ignorable="d"
+        Title="Mostrar todos" Height="300" Width="400">
+    <StackPanel Orientation="Vertical" Margin="20">
+        <StackPanel Orientation="Horizontal">
+           <TextBlock Text="Digite um código: "></TextBlock>
+           <TextBox x:Name="Detalhes" Width="100"></TextBox>
+            <Button Content="Ver Detalhes" Click="Detail_Click"></Button>
+         </StackPanel>
+        <TextBlock Text="PETR3"></TextBlock>
+        <TextBlock Text="PETR4"></TextBlock>
+        
+        <Button Content="Voltar" Width="70" Click="Back_Click"></Button>
+
+    </StackPanel>
+</Window>

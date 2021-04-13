@@ -1,0 +1,19 @@
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\bin\Debug\WPF NET Framework.exe.config
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\bin\Debug\WPF NET Framework.exe
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\bin\Debug\WPF NET Framework.pdb
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\WPF NET Framework.csprojAssemblyReference.cache
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\MainWindow.g.cs
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\CreateWindow.g.cs
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\ReadWindow.g.cs
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\App.g.cs
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\WPF NET Framework_MarkupCompile.cache
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\WPF NET Framework_MarkupCompile.lref
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\MainWindow.baml
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\CreateWindow.baml
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\ReadWindow.baml
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\WPF NET Framework.g.resources
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\WPF_NET_Framework.Properties.Resources.resources
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\WPF NET Framework.csproj.GenerateResource.cache
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\WPF NET Framework.csproj.CoreCompileInputs.cache
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\WPF NET Framework.exe
+C:\Users\digo_\Desktop\Luz\WPF NET Framework\WPF NET Framework\obj\Debug\WPF NET Framework.pdb

@@ -1,0 +1,20 @@
+﻿<Window x:Class="WPF_NET_Framework.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_NET_Framework"
+        mc:Ignorable="d"
+        Title="Cadastro de Investimentos" Height="227" Width="639">
+    <StackPanel Margin="10,0,387,0">
+        <Label Content="Selecione uma opção de investimento"></Label>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <RadioButton x:Name="StockRadio" GroupName="Investimentos" Content="Ações" IsChecked ="True" Margin="3" Checked="StockRadioChecked"></RadioButton>
+            <RadioButton x:Name="FundRadio" GroupName="Investimentos" Content="Fundos" Margin="3" Checked="FundRadio_Checked"/>
+        </StackPanel>
+        <Button Click="Button_Click_Cadastrar">Cadastrar</Button>
+        <Button Click="Button_Click">Visualizar</Button>
+        <Button>Atualizar</Button>
+        <Button>Deletar</Button>
+    </StackPanel>
+</Window>
