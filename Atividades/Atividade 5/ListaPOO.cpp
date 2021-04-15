@@ -10,7 +10,7 @@
 #include <algorithm>
 #include<time.h>
 
-//Notação: Lista simple encadeada. Pilha insere e remove no início da lista. Fila insere no fim e remove no início da lista.
+//Notação: Lista simple encadeada. Pilha insere e remove no início (inicio é o topo) da lista. Fila insere no fim e remove no início da lista.
 
 using namespace std;
 
@@ -53,17 +53,17 @@ class Lista{
 
 class Pilha: public Lista{
 	public:
-		void insertFirst(int);
+		void insertFirst(int); 	//polimorfirmo
 		void display();
 		Pilha();
-		void operator--();
+		void operator--();		//sobrecarga operador
 };
 class Fila: public Lista{
 	public:
-		void display();
+		void display(); 	
 		Fila();
-		void operator--();
-		void insertLast(int);
+		void operator--();		//sobrecarga operador
+		void insertLast(int);	//polimorfismo
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -96,8 +96,8 @@ void Node::setNext(Node* N){
 //////////////Funções de Lista
 ////////////////////////////////////////////////////////////////////////////////////
 
-void Lista::display() {
-   struct Node* ptr;
+void Lista::display() {		//equiavelente void diplay(Lista *L){
+   Node* ptr;
    if(inicio==NULL)
    cout<<"List is empty";
    else {

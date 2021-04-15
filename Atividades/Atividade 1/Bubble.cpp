@@ -37,10 +37,12 @@ int getInt(){
 	int n;
 	cin >> n;
 	while (cin.fail()){
-		cin.clear();
-		cin.ignore();
-		cout << "Valor invalido. Digite um numero inteiro: ";
-		cin >> n;
+		cout << "Valor invalido. Digite um numero inteiro: " << endl;
+		while(cin.fail()){	 //ciclo pra limpar string
+			cin.clear();
+			cin.ignore();
+			cin >> n;
+		}
 	}
 	return n;
 }

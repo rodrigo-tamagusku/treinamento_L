@@ -107,13 +107,13 @@ void PostOrder(Tree *T){
 	traversePostOrder(T->root); //Pode ser usado para deletar a árvore, pois acessa folhas antes dos demais.
 }
 
-node* minValueNode(node* N){
+node* minValueNode(node* N){				//O(log n)
    node* current = N;
    while (current && current->left != NULL)
       current = current->left;
    return current;
 }
-node* maxValueNode(node* N){
+node* maxValueNode(node* N){				//O(log n)
    node* current = N;
    while (current && current->right != NULL)
       current = current->right;
@@ -143,7 +143,7 @@ node* deleteNode(node *N, int key){
       }											//Achei o nó N com key, mas ele tem as duas subárvore esquerda e direita não nulas
       node* temp = minValueNode(N->right);		//Escolho olhar na direita. Busco o nó que tem o menor valor pra pendurar no lugar.
       if(temp==NULL){
-      	temp=maxValueNode(N->left);
+      	temp=maxValueNode(N->left);				//Procuro na esquerda se não tiver nada na direita
       	if(temp!=NULL){
       		N->data=temp->data;
       		N->left=deleteNode(N->left,temp->data);
@@ -162,11 +162,23 @@ void deleteValueFromTree(Tree *T, int value){
 }
 
 void deleteTree(Tree *T){
-	cout <<"Deletando arvore" <<endl;
-	while(T->root!=NULL){
+	cout << endl <<"Deletando arvore" <<endl;
+	while(T->root!=NULL){	//repete remoção de raiz
 		cout << "Deletado valor " << T->root->data << endl;
 		T->root = deleteNode(T->root,T->root->data);
 	}
+}
+
+int getInt(){
+	int n;
+	cin >> n;
+	while (cin.fail()){
+		cin.clear();
+		cin.ignore();
+		cout << "Valor invalido. Digite um numero inteiro: ";
+		cin >> n;
+	}
+	return n;
 }
 
 void testTree(Tree *T){
@@ -226,12 +238,46 @@ void testTree(Tree *T){
 	cout << "\nPostorder traversal: ";
 	PostOrder(T);
 }
+
 int main() {
+	int option=0,n=0;
 	Tree arvoreBin;
 	createTree(&arvoreBin);
-	testTree(&arvoreBin);
-   cout << endl<<endl;
-   deleteTree(&arvoreBin);
+	do{
+	   cout << "Escolha como usar a arvore binaria: " << endl;
+	   cout << "   1 - Entrar com dados manuais" << endl;
+	   cout << "   2 - Testar exemplo automatico " << endl;
+	   //cout << "   3 - ?" << endl;
+	   cout << "   0 - Sair " << endl;
+	   //cin >> option;
+	   option = getInt();
+	   system("CLS");
+	   switch(option){
+	   	   case 1:
+			  cout << "Entre com a quantidade de elementos: ";
+			  n = getInt();
+			  cout << "Entre com elementos: " << endl;
+		      for(int i = 0; i<n; i++) {
+		      	 insertTree(&arvoreBin,getInt());
+		      }
+		      cout << "\n\nPreorder traversal: ";
+	   		  PreOrder(&arvoreBin);
+			  cout << "\nInorder traversal: ";
+			  InOrder(&arvoreBin);
+		 	  cout << "\nPostorder traversal: ";
+			  PostOrder(&arvoreBin);
+			  deleteTree(&arvoreBin);
+   		      cout << endl <<endl;
+			  break;
+		   case 2:
+			  testTree(&arvoreBin);
+ 			  cout << endl<<endl;
+			  deleteTree(&arvoreBin);
+		   	  break;		   	  
+		   default:
+		   	  option=0;
+	   }
+   } while(option!=0);
    system("PAUSE");
 
 }
