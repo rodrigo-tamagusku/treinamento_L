@@ -1,0 +1,15 @@
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\WPF App.exe.config
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\WPF App.exe
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\WPF App.pdb
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\App.g.cs
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App_MarkupCompile.cache
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App_MarkupCompile.lref
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.g.resources
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF_App.Properties.Resources.resources
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.csproj.GenerateResource.cache
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.csproj.CoreCompileInputs.cache
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.exe
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.pdb
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.csprojAssemblyReference.cache
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\MainWindow.g.cs
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\MainWindow.baml

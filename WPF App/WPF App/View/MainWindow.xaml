@@ -1,0 +1,37 @@
+﻿<Window x:Class="WPF_App.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_App.View"
+        mc:Ignorable="d"
+        Title="Cadastro de Investimentos" Height="200" Width="550">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"></ColumnDefinition>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label Content="Selecione uma opção de investimento"></Label>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1">
+                <RadioButton x:Name="StockRadio" GroupName="Investimentos" Content="Ações" IsChecked ="True" Margin="3" Checked="StockRadioChecked"></RadioButton>
+                <RadioButton x:Name="FundRadio" GroupName="Investimentos" Content="Fundos" Margin="3" Checked="FundRadio_Checked"/>
+            </StackPanel>
+            <Button Click="Button_Click_Cadastrar" Margin="2" Width="100">Cadastrar</Button>
+            <Button Click="Button_Click_Visualizar" Margin="2" Width="100">Visualizar</Button>
+            <Button Click="Button_Click_Atualizar" Margin="2" Width="100">Atualizar</Button>
+            <Button Click="Button_Click_Deletar" Margin="2" Width="100">Deletar</Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock Margin="10">Lista de Ações:</TextBlock>
+            <TextBlock Text="{Binding Stock.name}"></TextBlock>
+            <TextBlock>Ble</TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Column="2">
+            <TextBlock Margin="10">Lista de Fundos:</TextBlock>
+            <TextBlock Text="{Binding nome}"></TextBlock>
+            <TextBlock>Ble</TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>

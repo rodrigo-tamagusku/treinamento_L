@@ -18,7 +18,7 @@ struct Tree{
   struct node *root;
 };
 
-void createTree(struct Tree *T){
+void createTree(Tree *T){
 	T->root=NULL;
 }
 
@@ -121,52 +121,108 @@ node* maxValueNode(node* N){				//O(log n)
 }
 
 node* deleteNode(node *N, int key){
+	if(N==NULL){
+		return N;
+	}
+	if(key < N->data){						//se nó atual tem valor maior
+		N->left = deleteNode(N->left,key);	//procuro na esquerda
+	}else if(key > N->data){		
+		N->right = deleteNode(N->right,key);
+	}else {									//key == N->data, achei o valor
+		if(N->left==NULL){					//não há sub-arvore à esquerda. Inclui o caso de N ser folha.
+			node *temp = N->right;			
+	        free(N);
+	        N=NULL;
+	        return temp;
+		}
+		else if(N->right==NULL){			//não há sub-arvore a direita.
+			node *temp = N->left;			
+	        free(N);
+	        N=NULL;
+	        return temp;
+		}									//caso que há duas sub-arvores
+		node *temp=N->right;				//Vou procurar à direita o menor valor de nó
+		if(temp->left==NULL){				//esse primeiro nó é o menor
+			N->right=temp->right;
+		}
+		else {
+			node *hold;
+			while(temp->left!=NULL){
+				hold = temp;
+				temp=temp->left;
+			}
+			hold->left=temp->right;
+		}
+		temp->left=N->left;
+		temp->right=N->right;
+		free(N);
+		return temp;
+	}
+}
+
+node* deleteNode_old(node *N, int key){
 	if(N==NULL){				//Se cheguei em um nulo
 	   return N;				//não tem o key na subárvore
 	}
     if (key < N->data)							//Se meu nó atual é maior que key, procuro key na subárvore à esquerda
          N->left = deleteNode(N->left, key);
-      else if (key > N->data)					//Se meu nó atual é menor que key, procuro key na subárvore à direita
-         N->right = deleteNode(N->right, key);
-    else{										//Se achei o nó N com key
-      if (N->left == NULL){						//Se achei o nó N com key, e ele não tem esquerda
-		 node *temp = N->right;					//Reconstruo a subárvore sem problemas
-         free(N);
-         N=NULL;
-         return temp;
-      }
-      else if (N->right == NULL){				//Se achei o nó N com key, e ele não tem direita
-		 node *temp = N->left;					//Reconstruo a subárvore sem problemas
-         free(N);
-         N=NULL;
-         return temp;
-      }											//Achei o nó N com key, mas ele tem as duas subárvore esquerda e direita não nulas
-      node* temp = minValueNode(N->right);		//Escolho olhar na direita. Busco o nó que tem o menor valor pra pendurar no lugar.
-      if(temp==NULL){
-      	temp=maxValueNode(N->left);				//Procuro na esquerda se não tiver nada na direita
-      	if(temp!=NULL){
-      		N->data=temp->data;
-      		N->left=deleteNode(N->left,temp->data);
+    else if (key > N->data)					//Se meu nó atual é menor que key, procuro key na subárvore à direita
+         	N->right = deleteNode(N->right, key);
+	    else{										//Se achei o nó N com key
+	      if (N->left == NULL){						//Se achei o nó N com key, e ele não tem esquerda
+			 node *temp = N->right;					//Reconstruo a subárvore sem problemas
+	         free(N);
+	         N=NULL;
+	         return temp;
+	      }
+	      else if (N->right == NULL){				//Se achei o nó N com key, e ele não tem direita
+			 node *temp = N->left;					//Reconstruo a subárvore sem problemas
+	         free(N);
+	         N=NULL;
+	         return temp;
+	      }											//Achei o nó N com key, mas ele tem as duas subárvore esquerda e direita não nulas
+	      node* temp = minValueNode(N->right);		//Escolho olhar na direita. Busco o nó que tem o menor valor pra pendurar no lugar.
+	      if(temp==NULL){							//Se não há sub-árvore na direita
+	      	temp=maxValueNode(N->left);				//Procuro um nó na esquerda se não tiver nada na direita
+	      	if(temp!=NULL){
+	      		N->data=temp->data;
+	      		N->left=deleteNode(N->left,temp->data);
+			}
+		  }
+		  else{
+			  N->data = temp->data;							//troco os valores
+		      N->right = deleteNode(N->right, temp->data);	//deleto o nó que tinha o menor valor procurado.
+	      }
 		}
-	  }
-	  else{
-	  N->data = temp->data;							//troco os valores
-      N->right = deleteNode(N->right, temp->data);	//deleto o nó que tinha o menor valor procurado.
-      }
-	}
     return N;
 }
 
 void deleteValueFromTree(Tree *T, int value){
-	deleteNode(T->root,value);
+	if(T->root->data==value){
+		T->root=deleteNode(T->root,value);
+	}
+	else deleteNode(T->root,value);
 }
 
+void deleteNodePostOrder(node* temp){
+	if(temp!=NULL){
+	    deleteNodePostOrder(temp->left);
+    	deleteNodePostOrder(temp->right);
+    	//cout << " delete " << temp->data;
+    	free(temp);
+    	temp=NULL;
+	}
+}
 void deleteTree(Tree *T){
+	deleteNodePostOrder(T->root);				 //Método O(n)
+	T->root=NULL;
+	/*										     //Método O(n log n)
 	cout << endl <<"Deletando arvore" <<endl;
 	while(T->root!=NULL){	//repete remoção de raiz
 		cout << "Deletado valor " << T->root->data << endl;
 		T->root = deleteNode(T->root,T->root->data);
 	}
+	*/
 }
 
 int getInt(){
@@ -229,7 +285,7 @@ void testTree(Tree *T){
 	deleteValueFromTree(T,7);
 	deleteValueFromTree(T,4);
 	deleteValueFromTree(T,15);
-	deleteValueFromTree(T,14);
+	//deleteValueFromTree(T,14);
 	//deleteValueFromTree(T,13);		//Nota: Remover o último dá problema. Provavelmente o T->root não fica NULL quando devia
 	cout << "\n\nPreorder traversal: ";
 	PreOrder(T);

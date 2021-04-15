@@ -34,33 +34,35 @@ class Node {
 class Lista{
 	public:
 		//int tamanho;
-		virtual void display();
-		int tamanho();
-		Lista();
-		void removeFirst();
-		Node* getFirst();
-		void setFirst(Node* N);
-		void setLast(Node* N);
-		void rotinaTeste();
-		Node* getLast();
+		virtual void display();			//public
+		int tamanho();					//public
+		Lista();						//public
+		void removeFirst();				//public
+		Node* getFirst();				//public
+		void setFirst(Node* N);			//public
+		virtual void setLast(Node* N);	//private para pilha
+		void rotinaTeste();				//public
+		virtual Node* getLast();		//private para pilha
 	private:
 		Node *inicio;
 		Node *fim;
 		void insertFirst(int val);
 		void insertLast(int val);
-		virtual void removeLast();
+		void removeLast();
 };
 
 class Pilha: public Lista{
 	public:
+		Node* getLast();
+		void setLast(Node*);
 		void insertFirst(int); 	//polimorfirmo
-		void display();
+		void display();			//polimorfismo
 		Pilha();
 		void operator--();		//sobrecarga operador
 };
 class Fila: public Lista{
 	public:
-		void display(); 	
+		void display(); 		//polimorfismo
 		Fila();
 		void operator--();		//sobrecarga operador
 		void insertLast(int);	//polimorfismo
@@ -217,6 +219,13 @@ void Lista::rotinaTeste(){
 //////////////Pilha
 ////////////////////////////////////////////////////////////////////////////////////
 
+void Pilha::setLast(Node *N){
+	//permissão negada
+}
+Node* Pilha::getLast(){
+	//permissão negada
+}
+
 void Pilha::insertFirst(int val){
    Node* newnode = new Node();
    /*		//não é necessário na pilha
@@ -268,7 +277,7 @@ void Pilha::display(){
 
 Pilha::Pilha(){
 	setFirst(NULL);
-	setLast(NULL);
+	//setLast(NULL);
 }
 
 void Pilha::operator--(){
@@ -372,6 +381,7 @@ int main() {
 		   case 2:
 		   	  P= new Pilha();		//Onde eu crio a minha Pilha
 		   	  P->rotinaTeste();
+		   	  cout << "Aplicando operador --"<<endl;
 		   	  P->operator--();		//Há maneira de puxar como P--; ?
 		   	  P->display();
 		   	  delete P;
@@ -379,6 +389,7 @@ int main() {
 		   case 3:
 		   	  F= new Fila();		//Onde eu crio a minha Fila
 		   	  F->rotinaTeste();
+		   	  cout << "Aplicando operador --"<<endl;
 		   	  F->operator--();
 		   	  F->display();
 		   	  delete F;

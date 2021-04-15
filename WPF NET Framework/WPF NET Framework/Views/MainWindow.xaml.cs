@@ -15,52 +15,6 @@ using System.Windows.Shapes;
 
 namespace WPF_NET_Framework
 {
-    public class Stock
-    {
-        public string name
-        {
-            get;
-            set;
-        }
-        public string code
-        {
-            get;
-            set;
-        }
-    }
-    class Fund
-    {
-        string name
-        {
-            get;
-            set;
-        }
-        string code
-        {
-            get;
-            set;
-        }
-    }
-    public class StockRepository
-    {
-        private List<Stock> _stocks;
-        public StockRepository() {   //construtor
-            _stocks = new List<Stock>
-            {
-            new Stock() { name = "Petrobras PETR3", code = "PETR3" },
-            new Stock() { name = "Petrobras PETR4", code = "PETR4" }
-            };
-        }
-        public List<Stock> GetStocks()
-        {
-            return _stocks;   
-        }
-        public void UpdateStocks(Stock SelectedStock)
-        {
-            Stock stockToChange = _stocks.Single(s => s.code == SelectedStock.code);
-            stockToChange = SelectedStock;
-        }
-    }
     /// <summary>
     /// Interação lógica para MainWindow.xam
     /// </summary>

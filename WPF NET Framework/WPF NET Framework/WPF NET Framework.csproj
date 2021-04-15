@@ -55,13 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CreateWindow.xaml.cs">
+    <Compile Include="Models\StockModel.cs" />
+    <Compile Include="ViewModels\StockViewModel.cs" />
+    <Compile Include="Views\CreateWindow.xaml.cs">
       <DependentUpon>CreateWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReadWindow.xaml.cs">
+    <Compile Include="Views\ReadWindow.xaml.cs">
       <DependentUpon>ReadWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -69,15 +71,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="CreateWindow.xaml">
+    <Page Include="Views\CreateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ReadWindow.xaml">
+    <Page Include="Views\ReadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
