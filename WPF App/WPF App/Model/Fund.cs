@@ -1,19 +1,15 @@
 ﻿
-namespace WPF_App.Stock.Model
+namespace WPF_App.Fund.Model
 {
     using System;                               //Permite manipular evento
     using System.ComponentModel;                //Da Biblioteca .NET, permite herdar o INotifyPropertyChanged para usar PropertyChangedEventHandler e PropertyChangedEventArgs
-    public class Stock : INotifyPropertyChanged //Herdo
+    public class Fund : INotifyPropertyChanged //Herdo
     {
-        
-        public Stock(string stockName,string stockCode)          //Construtor
+        public Fund(string fundName)          //Construtor
         {
-            name = stockName;
-            code = stockCode;
+            name = fundName;
         }
-        
 
-        public string code { get; set; }
         private string _name;
         public string name
         {

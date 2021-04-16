@@ -43,7 +43,16 @@ namespace WPF_App.View
 
         private void Button_Click_Visualizar(object sender, RoutedEventArgs e)
         {
-
+            if (FundRadio.IsChecked == true)
+            {
+                ReadWindow readWindow = new ReadWindow();
+                readWindow.Show();
+                //MessageBox.Show("Entre com o nome do Fundo de Investimento.", "Cadastrar");
+            }
+            else if (StockRadio.IsChecked == true)
+            {
+                MessageBox.Show("Entre com o nome da Ação.", "Cadastrar");
+            }
         }
 
         private void Button_Click_Deletar(object sender, RoutedEventArgs e)
@@ -55,5 +64,6 @@ namespace WPF_App.View
         {
 
         }
+
     }
 }

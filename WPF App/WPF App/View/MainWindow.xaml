@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPF_App.View"
         mc:Ignorable="d"
         Title="Cadastro de Investimentos" Height="200" Width="550">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"></ColumnDefinition>
@@ -25,13 +26,25 @@
         </StackPanel>
         <StackPanel Grid.Column="1">
             <TextBlock Margin="10">Lista de Ações:</TextBlock>
-            <TextBlock Text="{Binding Stock.name}"></TextBlock>
-            <TextBlock>Ble</TextBlock>
+            <ListView ItemsSource="{Binding Stock}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name}"></GridViewColumn>
+                        <GridViewColumn Header="Code" DisplayMemberBinding="{Binding code}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </StackPanel>
         <StackPanel Grid.Column="2">
             <TextBlock Margin="10">Lista de Fundos:</TextBlock>
-            <TextBlock Text="{Binding nome}"></TextBlock>
-            <TextBlock>Ble</TextBlock>
+            <ListView ItemsSource="{Binding Stock}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name}"></GridViewColumn>
+                        <GridViewColumn Header="Code" DisplayMemberBinding="{Binding code}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </StackPanel>
     </Grid>
 </Window>

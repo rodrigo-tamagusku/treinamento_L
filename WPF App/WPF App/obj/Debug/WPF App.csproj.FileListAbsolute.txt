@@ -13,3 +13,5 @@ C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.pdb
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.csprojAssemblyReference.cache
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\MainWindow.g.cs
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\MainWindow.baml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\ReadWindow.g.cs
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\ReadWindow.baml

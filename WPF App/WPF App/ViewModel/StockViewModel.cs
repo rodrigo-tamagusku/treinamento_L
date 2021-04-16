@@ -3,27 +3,27 @@ namespace WPF_App.Stock.ViewModel
 {
     using System;
     using WPF_App.Stock.Model;
+    using System.Collections.Generic;
     using System.Diagnostics;
 
     internal class StockViewModel
     {
-        private Stock _Stock;
-        public string nome { get; set; }
         public StockViewModel()
         {
-            _Stock = new Stock("Petrobras PETR3");
-            this.nome = "Rodrigo";
+            listStock = new List<Stock>();
+            listStock.Add(new Stock("Petrobras PETR3", "PETR3"));
+            listStock.Add(new Stock("Petrobras PETR4", "PETR4"));
+            listStock.Add(new Stock("Rodrigo", "RODR"));
         }
-        
-        public Stock Stock
+        private List<Stock> listStock;
+
+        public List<Stock> Stock
         {
-            get{
-                return _Stock;
+            get
+            {
+                return listStock;
             }
         }
-        public void SaveChanges()
-        {
-            Debug.Assert(false, string.Format("{0} foi atualizado.", Stock.name));
-        }
+
     }
 }
