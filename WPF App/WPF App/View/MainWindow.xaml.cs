@@ -46,12 +46,16 @@ namespace WPF_App.View
             if (FundRadio.IsChecked == true)
             {
                 ReadWindow readWindow = new ReadWindow();
+                readWindow.DataContext= this.DataContext;        //necessário para usar mesma DataContext
                 readWindow.Show();
                 //MessageBox.Show("Entre com o nome do Fundo de Investimento.", "Cadastrar");
             }
             else if (StockRadio.IsChecked == true)
             {
-                MessageBox.Show("Entre com o nome da Ação.", "Cadastrar");
+                ReadWindow readWindow = new ReadWindow();
+                readWindow.DataContext = this.DataContext;      //necessário para usar mesma DataContext
+                readWindow.Show();
+                //MessageBox.Show("Entre com o nome do Fundo de Investimento.", "Cadastrar");
             }
         }
 

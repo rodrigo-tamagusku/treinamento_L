@@ -33,7 +33,7 @@ void merge(int *array, int l, int m, int r) {
    for(j = 0; j<nr; j++)
       rarr[j] = array[m+1+j];
    i = 0; j = 0; k = l;
-   //marge temp arrays to real array
+   //merge temp arrays to real array
    while(i < nl && j<nr) {
       if(larr[i] <= rarr[j]) {
          array[k] = larr[i];
@@ -53,7 +53,7 @@ void merge(int *array, int l, int m, int r) {
       j++; k++;
    }
 }
-void mergeSort(int *array, int l, int r) {
+void mergeSort(int *array, int l, int r) {	//O(n log n) no pior, melhor e médio caso
    int m;
    if(l < r) {
       int m = l+(r-l)/2;

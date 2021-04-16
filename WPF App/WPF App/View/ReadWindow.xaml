@@ -12,8 +12,14 @@
             <TextBox x:Name="Detalhes" Width="100"></TextBox>
             <Button Content="Ver Detalhes" Click="Detail_Click"></Button>
         </StackPanel>
-        <TextBlock Text="PETR3"></TextBlock>
-        <TextBlock Text="PETR4"></TextBlock>
+        <ListView ItemsSource="{Binding Stock}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name}"></GridViewColumn>
+                    <GridViewColumn Header="Code" DisplayMemberBinding="{Binding code}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <Button Content="Voltar" Width="70" Click="Back_Click"></Button>
 

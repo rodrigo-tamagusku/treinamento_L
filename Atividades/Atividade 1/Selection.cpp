@@ -21,14 +21,14 @@ void display(int *array, int size) { 	//only 10 first
 	  }
 	}
 }
-void selectionSort(int *array, int size) {
+void selectionSort(int *array, int size) {		//O(n²) no pior, melhor e médio caso
    int i, j, imin;
    for(i = 0; i<size-1; i++) {
-      imin = i;   //get index of minimum data
+      imin = i;   					//get index of minimum data
       for(j = i+1; j<size; j++)		// não importa melhor e pior caso
          if(array[j] < array[imin]) // Acho um novo menor
             imin = j;
-         //placing in correct position
+        //placing in correct position
          swap(array[i], array[imin]);
    }
 }

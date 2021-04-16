@@ -143,20 +143,20 @@ node* deleteNode(node *N, int key){
 		}									//caso que há duas sub-arvores
 		node *temp=N->right;				//Vou procurar à direita o menor valor de nó
 		if(temp->left==NULL){				//esse primeiro nó é o menor
-			N->right=temp->right;
+			N->right=temp->right;			//penduro o restante da sub-árvore adequadamente
 		}
 		else {
-			node *hold;
-			while(temp->left!=NULL){
+			node *hold;						//hold tem o papel de nó exatamente anterior ao temp
+			while(temp->left!=NULL){		//caminho até achar o nó que não tem filho à esquerda. Significa que é o menor nó da subárvore de N->right
 				hold = temp;
 				temp=temp->left;
-			}
-			hold->left=temp->right;
+			}								//achei o menor valor temp
+			hold->left=temp->right;			// quando eu removo temp, eu quero pendurar a sua única sub-árvore(que é temp-> right) no hold.
 		}
 		temp->left=N->left;
 		temp->right=N->right;
 		free(N);
-		return temp;
+		return temp;						//retorno o nó temp que é "o novo N"
 	}
 }
 
@@ -229,10 +229,12 @@ int getInt(){
 	int n;
 	cin >> n;
 	while (cin.fail()){
-		cin.clear();
-		cin.ignore();
 		cout << "Valor invalido. Digite um numero inteiro: ";
-		cin >> n;
+		while(cin.fail()){
+			cin.clear();
+			cin.ignore();
+			cin >> n;
+		}
 	}
 	return n;
 }

@@ -15,17 +15,17 @@ void display(int *array, int size) {	//only 10 first
 	  }
 	}
 }
-void insertionSort(int *array, int size) {
+void insertionSort(int *array, int size) {	//melhor caso O(n), pior e médio caso O(n²)
    int key, j;
    //considero primeiro item já ordenado, logo usa-se i=1 em vez de i=0
    for(int i = 1; i<size; i++) {
-      key = array[i];//take value
+      key = array[i];					//key é o valor que quero ordenar
       j = i;
       while(array[j-1]>key && j > 0) { // Achei o lugar de key?
          array[j] = array[j-1];
          j--;
       }
-      array[j] = key;   //insert in right place
+      array[j] = key;   				//j é sempre minha posição de key
    }
 }
 

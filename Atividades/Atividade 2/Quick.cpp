@@ -49,7 +49,7 @@ int partition(int *array, int lower, int upper) {
    return end;
 }
 
-void quickSort(int *array, int left, int right) {
+void quickSort(int *array, int left, int right) {	//O(n log n)
    int q;
 
    if(left < right) {

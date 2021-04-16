@@ -34,50 +34,52 @@ class Node {
 class ListaEncadeada{
 	public:
 		//int tamanho;
-		void display();					//public
-		int tamanho();					//public
-		ListaEncadeada();				//public
-		void removeFirst();				//public
-		Node* getFirst();				//public
-		void setFirst(Node* N);			//public
-		//void rotinaTeste();				//public
-		void insertFirst(int);
+		void display();				
+		int tamanho();				
+		ListaEncadeada();			
+		void removeFirst();			
+		Node* getFirst();
+		void setFirst(Node* N);			
+		//void rotinaTeste();			
 	private:
 		Node *inicio;
-		Node *fim;
 };
 
-class Lista:public ListaEncadeada{
-	public:
-		virtual void setLast(Node* N);	//private para pilha
-		virtual Node* getLast();		//private para pilha
-		void rotinaTeste();
-	private:
-		Node *inicio;
-		Node *fim;
-		void insertFirst(int val);
+class Lista : public ListaEncadeada{
+	public:	
+		Lista();
+		void TesteHardCode();
+		void insertFirst(int);
 		void insertLast(int val);
-		void removeLast();
+		void removeLast();			
+		Node* getLast();
+		void setLast(Node* N);	
+	private:	
+		Node *fim;
 };
 
 class Pilha: public ListaEncadeada{
 	private:
 		//Lista *L = new Lista();	//
 	public:
-		Node* getLast();
-		void setLast(Node*);
+		void TesteHardCode();
 		void insertFirst(int); 	//polimorfirmo
 		void display();			//polimorfismo
 		Pilha();
 		void operator--();		//sobrecarga operador
 };
 
-class Fila: public Lista{
+class Fila: public ListaEncadeada{
 	public:
+		void TesteHardCode();
 		void display(); 		//polimorfismo
 		Fila();
 		void operator--();		//sobrecarga operador
 		void insertLast(int);	//polimorfismo
+		Node* getLast();
+		void setLast(Node* N);	
+	private:	
+		Node *fim;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -110,19 +112,18 @@ void Node::setNext(Node* N){
 //////////////Funções de Lista Encadeada
 ////////////////////////////////////////////////////////////////////////////////////
 
-void ListaEncadeada::display() {		//equiavelente void diplay(Lista *L){
+void ListaEncadeada::display() {		//equivalente void diplay(Lista *L){
    Node* ptr;
    if(inicio==NULL)
-   cout<<"List is empty";
+   		cout<<"List is empty";
    else {
       ptr = inicio;
-      cout<<"List elements are: ";
-      while (ptr != fim->getNext()) {
+      cout<<"List: ";
+      while (ptr!=NULL) {
          cout<< ptr->getData() <<" ";
          ptr = ptr->getNext();
       }
    }
-   cout<<endl;
 }
 
 int ListaEncadeada::tamanho() {
@@ -132,7 +133,7 @@ int ListaEncadeada::tamanho() {
    	  return 0;
    else {
       ptr = inicio;
-      while (ptr != fim->getNext()) {
+      while (ptr != NULL) {
          contador++;
          ptr = ptr->getNext();
       }
@@ -142,17 +143,13 @@ int ListaEncadeada::tamanho() {
 
 ListaEncadeada::ListaEncadeada(){
 	setFirst(NULL);
-	//setLast(NULL);
 }
 
 void ListaEncadeada::removeFirst() {
    if(inicio==NULL)
    cout<<"Empty"<<endl;
    else {
-      //cout<<"The removed element is "<< inicio->getData() <<endl;
-      if(inicio->getNext()==NULL){ //1 elemento só
-      	fim=NULL;
-	  }
+      //cout<<"The removed element is "<< inicio->getData() <<endl
       Node* ptr=inicio;
       inicio = ptr->getNext();
       free(ptr);
@@ -167,33 +164,71 @@ void ListaEncadeada::setFirst(Node* N){
 	inicio=N;
 }
 
-void ListaEncadeada::insertFirst(int val) {
-   //Node* newnode = (Node*) malloc(sizeof(Node));
-   Node* newnode = new Node();
-   if(fim==NULL){ //se vazio
-   	  fim=newnode;
-   }
-   newnode->setData(val);
-   newnode->setNext(inicio);
-   inicio = newnode;
-}
-
 ////////////////////////////////////////////////////////////////////////////////////
 //////////////Lista
 ////////////////////////////////////////////////////////////////////////////////////
+Lista::Lista(){
+	setFirst(NULL);
+	setLast(NULL);
+}
+
+void Lista::insertFirst(int val) {
+   //Node* newnode = (Node*) malloc(sizeof(Node));
+   Node* newnode = new Node();
+   if(getLast()==NULL){ //se vazio
+   	  setLast(newnode);
+   }
+   newnode->setData(val);
+   newnode->setNext(getFirst());
+   setFirst(newnode);
+}
 
 void Lista::insertLast(int val) {
    //Node* newnode = (Node*) malloc(sizeof(Node));
    Node* newnode = new Node(val);
-   Node* ptr=fim;
-   if(inicio==NULL){ //se vazio
-   	  inicio=newnode;
+   Node* ptr=getLast();
+   if(getFirst()==NULL){ //se vazio
+   	  setFirst(newnode);
    }
    else 
    	  ptr->setNext(newnode);
    //newnode->setData(val);
    newnode->setNext(NULL);
-   fim=newnode;
+   setLast(newnode);
+}
+
+void Lista::removeLast() {
+   Node* ptr=getFirst();
+   if(ptr==NULL)
+   cout<<"Empty"<<endl;
+   else {
+   	  while(ptr->getNext()!=getLast()){ //chego no penúltimo
+   	  	 ptr=ptr->getNext();
+   	  }
+      //cout<<"The removed element is "<< ptr->getNext()->getData() <<endl;
+      if(getFirst()->getNext()==NULL){ //1 elemento só
+      	setFirst(NULL);
+	  }
+	  free(getLast());
+	  setLast(ptr);
+	  ptr->setNext(NULL);
+	}
+}
+void Lista::TesteHardCode(){
+	display();
+	cout<<endl<<"   Insere no primeiro: "; insertFirst(1);	display();
+	cout<<endl<<"   Insere no primeiro: "; insertFirst(2);	display();
+	cout<<endl<<"   Insere no primeiro: "; insertFirst(3);	display();
+	cout<<endl<<"   Insere no primeiro: "; insertFirst(4);	display();
+	cout<<endl<<"   Remove o primeiro: "; removeFirst(); 	display();
+	cout<<endl<<"   Remove o ultimo: "; removeLast(); 	display();
+	cout<<endl<<"   Insere no ultimo: "; insertLast(5); 	display();
+	cout<<endl<<"   Insere no ultimo: ";insertLast(6); 	display();
+	cout<<endl<<"   Insere no ultimo: ";insertLast(7); 	display();
+	cout<<endl<<"   Insere no ultimo: ";insertLast(8);	display();
+	cout<<endl<<"   Insere no ultimo: ";insertLast(9);	display();
+	cout<<endl<<"   Remove o ultimo: ";removeLast(); 	display();
+	cout << endl;
 }
 Node* Lista::getLast(){
 	return fim;
@@ -201,54 +236,24 @@ Node* Lista::getLast(){
 void Lista::setLast(Node* N){
 	fim = N;
 }
-void Lista::removeLast() {
-   Node* ptr=inicio;
-   if(ptr==NULL)
-   cout<<"Empty"<<endl;
-   else {
-   	  while(ptr->getNext()!=fim){ //chego no penúltimo
-   	  	 ptr=ptr->getNext();
-   	  }
-      cout<<"The removed element is "<< ptr->getNext()->getData() <<endl;
-      if(inicio->getNext()==NULL){ //1 elemento só
-      	inicio=NULL;
-	  }
-	  free(fim);
-	  fim=ptr;
-	}
-}
-void Lista::rotinaTeste(){
+////////////////////////////////////////////////////////////////////////////////////
+//////////////Pilha
+////////////////////////////////////////////////////////////////////////////////////
+
+void Pilha::TesteHardCode(){
 	display();
 	insertFirst(1);	display();
 	insertFirst(2);	display();
 	insertFirst(3);	display();
 	insertFirst(4);	display();
 	removeFirst(); 	display();
-	insertLast(5); 	display();
-	insertLast(6); 	display();
-	insertLast(7); 	display();
-	insertLast(8);	display();
-	insertLast(9);	display();
+	//insertLast(5); 	display(); //erro, pois não há inserção
 	cout << endl;
 }
-////////////////////////////////////////////////////////////////////////////////////
-//////////////Pilha
-////////////////////////////////////////////////////////////////////////////////////
 
-void Pilha::setLast(Node *N){
-	//permissão negada
-}
-Node* Pilha::getLast(){
-	//permissão negada
-}
-
-void Pilha::insertFirst(int val){
+void Pilha::insertFirst(int val) {
+   //Node* newnode = (Node*) malloc(sizeof(Node));
    Node* newnode = new Node();
-   /*		//não é necessário na pilha
-   if(getLast()==NULL){ //se vazio
-   	  setLast(newnode);
-   }
-   */
    newnode->setData(val);
    newnode->setNext(getFirst());
    setFirst(newnode);
@@ -303,12 +308,19 @@ void Pilha::operator--(){
 ////////////////////////////////////////////////////////////////////////////////////
 //////////////Fila
 ////////////////////////////////////////////////////////////////////////////////////
-/*
-Node* Fila::getLast(){
-	return fim; 	//Dá problema, pois fim é private na classe Lista.
+void Fila::TesteHardCode(){
+	display();
+	//insertFirst(1);	display(); //erro pois não existe inserção no início da fila
+	removeFirst(); 	display();
+	insertLast(1); 	display();
+	removeFirst(); 	display();
+	insertLast(2); 	display();
+	insertLast(3); 	display();
+	insertLast(4);	display();
+	insertLast(5);	display();
+	removeFirst(); 	display();
+	cout << endl;
 }
-*/
-
 void Fila::insertLast(int val){
 	//Node* newnode = (Node*) malloc(sizeof(Node));
    Node* newnode = new Node(val);
@@ -369,6 +381,13 @@ void Fila::operator--(){
 	removeFirst();
 }
 
+Node* Fila::getLast(){
+	return fim;
+}
+void Fila::setLast(Node* N){
+	fim = N;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////
 //////////////Main
 ////////////////////////////////////////////////////////////////////////////////////
@@ -391,12 +410,12 @@ int main() {
 	   switch(option){
 	   	   case 1:
 			  L= new Lista();		//Onde eu crio a minha Lista
-			  L->rotinaTeste();
+			  L->TesteHardCode();
 			  delete L;
 			  break;
 		   case 2:
 		   	  P= new Pilha();		//Onde eu crio a minha Pilha
-		   	  P->rotinaTeste();
+		   	  P->TesteHardCode();
 		   	  cout << "Aplicando operador --"<<endl;
 		   	  P->operator--();		//Há maneira de puxar como P--; ?
 		   	  P->display();
@@ -404,7 +423,7 @@ int main() {
 		   	  break;
 		   case 3:
 		   	  F= new Fila();		//Onde eu crio a minha Fila
-		   	  F->rotinaTeste();
+		   	  F->TesteHardCode();
 		   	  cout << "Aplicando operador --"<<endl;
 		   	  F->operator--();
 		   	  F->display();
