@@ -199,16 +199,21 @@ void Lista::insertLast(int val) {
 
 void Lista::removeLast() {
    Node* ptr=getFirst();
-   if(ptr==NULL)
-   cout<<"Empty"<<endl;
+   if(ptr==NULL){
+   		cout<<"Empty"<<endl;
+   		return;
+   }
+   if(getFirst()->getNext()==NULL){ //1 elemento só
+      	free(getFirst());
+		setFirst(NULL);
+      	setLast(NULL);
+      	return;
+	}
    else {
    	  while(ptr->getNext()!=getLast()){ //chego no penúltimo
    	  	 ptr=ptr->getNext();
    	  }
       //cout<<"The removed element is "<< ptr->getNext()->getData() <<endl;
-      if(getFirst()->getNext()==NULL){ //1 elemento só
-      	setFirst(NULL);
-	  }
 	  free(getLast());
 	  setLast(ptr);
 	  ptr->setNext(NULL);
@@ -395,15 +400,18 @@ void Fila::setLast(Node* N){
 int main() {
    //srand (time(NULL));
    //system("PAUSE");
-   int option = 0;
+   int option,digito = 0;
    Lista *L;
    Pilha *P;
    Fila *F;
    do{
 	   cout << "Escolha a estrutura de dados: " << endl;
-	   cout << "   1 - Criar Lista " << endl;
-	   cout << "   2 - Criar Pilha " << endl;
-	   cout << "   3 - Criar Fila " << endl;
+	   cout << "   1 - Lista automatica" << endl;
+	   cout << "   2 - Pilha automatica" << endl;
+	   cout << "   3 - Fila automatica" << endl;
+	   cout << "   4 - Lista manual" << endl;
+	   cout << "   5 - Pilha manual" << endl;
+	   cout << "   6 - Fila manual" << endl;
 	   cout << "   0 - Sair " << endl;
 	   cin >> option;
 	   system("CLS");
@@ -427,6 +435,108 @@ int main() {
 		   	  cout << "Aplicando operador --"<<endl;
 		   	  F->operator--();
 		   	  F->display();
+		   	  delete F;
+		   	  break;
+		   case 4:
+		   	  L= new Lista();
+		   	  while(option!=9 && option!=0){
+				  cout << "Escolha a estrutura de dados: " << endl;
+				  cout << "   1 - Inserir no inicio da Lista " << endl;
+				  cout << "   2 - Inserir no fim da Lista " << endl;
+				  cout << "   3 - Remover no inicio da Lista " << endl;
+				  cout << "   4 - Remover no fim da Lista " << endl;
+				  cout << "   9 - Voltar" << endl;
+				  cout << "   0 - Sair " << endl;
+				  cin >> option;
+				  system("CLS");
+				  switch(option){
+				  	case 1:
+				  		cout <<"Digite o numero: "<< endl;
+				  		cin >> digito;
+				  		L->insertFirst(digito);
+				  		L->display();
+				  		break;
+				  	case 2:
+				  		cout <<"Digite o numero: "<< endl;
+				  		cin >> digito;
+				  		L->insertLast(digito);
+				  		L->display();
+				  		break;
+					case 3:
+				  		L->removeFirst();
+				  		L->display();
+				  		break;
+					case 4:
+				  		L->removeLast();
+				  		L->display();
+				  		break;
+					case 9:
+				  		break;
+				  	default:
+				  		break;
+				  }
+				  cout << endl;
+			  }
+			  delete L;
+			  break;
+		   case 5:
+		   	  P= new Pilha();		//Onde eu crio a minha Pilha
+		   	  while(option!=9 && option!=0){
+				  cout << "Escolha a estrutura de dados: " << endl;
+				  cout << "   1 - Inserir no topo da Pilha " << endl;
+				  cout << "   2 - Remover no topo da Pilha " << endl;
+				  cout << "   9 - Voltar" << endl;
+				  cout << "   0 - Sair " << endl;
+				  cin >> option;
+				  system("CLS");
+				  switch(option){
+				  	case 1:
+				  		cout <<"Digite o numero: "<< endl;
+				  		cin >> digito;
+				  		P->insertFirst(digito);
+				  		P->display();
+				  		break;
+				  	case 2:
+				  		P->removeFirst();
+				  		P->display();
+				  		break;
+					case 9:
+				  		break;
+				  	default:
+				  		break;
+				  }
+				  cout << endl;
+			  }
+		   	  delete P;
+		   	  break;
+		   case 6:
+		   	  F= new Fila();		//Onde eu crio a minha Fila
+		   	  while(option!=9 && option!=0){
+				  cout << "Escolha a estrutura de dados: " << endl;
+				  cout << "   1 - Inserir no fim da Fila " << endl;
+				  cout << "   2 - Remover no inicio da Fila " << endl;
+				  cout << "   9 - Voltar" << endl;
+				  cout << "   0 - Sair " << endl;
+				  cin >> option;
+				  system("CLS");
+				  switch(option){
+				  	case 1:
+				  		cout <<"Digite o numero: "<< endl;
+				  		cin >> digito;
+				  		F->insertLast(digito);
+				  		F->display();
+				  		break;
+				  	case 2:
+				  		F->removeFirst();
+				  		F->display();
+				  		break;
+					case 9:
+				  		break;
+				  	default:
+				  		break;
+				  }
+				  cout << endl;
+			  }
 		   	  delete F;
 		   	  break;
 		   default:
