@@ -25,7 +25,7 @@ namespace WPF_App.View
         }
         private void Detail_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Detalhes do Fundo: ", Detalhes.Text);
+            MessageBox.Show("Detalhes do Fundo: ", Code.Text);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

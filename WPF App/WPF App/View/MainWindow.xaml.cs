@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_App.Stock.Model;
 using WPF_App.Stock.ViewModel;
 
 namespace WPF_App.View
@@ -21,10 +22,12 @@ namespace WPF_App.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        private StockViewModel _produtos;
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new StockViewModel();
+            _produtos = new StockViewModel();
+            DataContext = _produtos;
         }
 
         private void StockRadioChecked(object sender, RoutedEventArgs e)
@@ -38,7 +41,24 @@ namespace WPF_App.View
 
         private void Button_Click_Cadastrar(object sender, RoutedEventArgs e)
         {
-
+            if (FundRadio.IsChecked == true)
+            {
+                CreateWindow createWindow;
+                createWindow = new CreateWindow(_produtos);
+                createWindow.DataContext = this.DataContext;
+                //necessário para usar mesma DataContext
+                createWindow.Show();
+                //MessageBox.Show("Entre com o nome do Fundo de Investimento.", "Cadastrar");
+            }
+            else if (StockRadio.IsChecked == true)
+            {
+                CreateWindow createWindow;
+                createWindow = new CreateWindow(_produtos);
+                createWindow.DataContext = this.DataContext;
+                //necessário para usar mesma DataContext
+                createWindow.Show();
+                //MessageBox.Show("Entre com o nome do Fundo de Investimento.", "Cadastrar");
+            }
         }
 
         private void Button_Click_Visualizar(object sender, RoutedEventArgs e)
@@ -61,12 +81,42 @@ namespace WPF_App.View
 
         private void Button_Click_Deletar(object sender, RoutedEventArgs e)
         {
-
+            if (FundRadio.IsChecked == true)
+            {
+                DeleteWindow deleteWindow;
+                deleteWindow = new DeleteWindow(_produtos);
+                deleteWindow.DataContext = this.DataContext;
+                //necessário para usar mesma DataContext
+                deleteWindow.Show();
+                //MessageBox.Show("Entre com o nome do Fundo de Investimento.", "Cadastrar");
+            }
+            else if (StockRadio.IsChecked == true)
+            {
+                DeleteWindow deleteWindow;
+                deleteWindow = new DeleteWindow(_produtos);
+                deleteWindow.DataContext = this.DataContext;
+                //necessário para usar mesma DataContext
+                deleteWindow.Show();
+                //MessageBox.Show("Entre com o nome do Fundo de Investimento.", "Cadastrar");
+            }
         }
 
         private void Button_Click_Atualizar(object sender, RoutedEventArgs e)
         {
-
+            if (FundRadio.IsChecked == true)
+            {
+                UpdateWindow updateWindow = new UpdateWindow();
+                updateWindow.DataContext = this.DataContext;        //necessário para usar mesma DataContext
+                updateWindow.Show();
+                //MessageBox.Show("Entre com o nome do Fundo de Investimento.", "Cadastrar");
+            }
+            else if (StockRadio.IsChecked == true)
+            {
+                UpdateWindow updateWindow = new UpdateWindow();
+                updateWindow.DataContext = this.DataContext;      //necessário para usar mesma DataContext
+                updateWindow.Show();
+                //MessageBox.Show("Entre com o nome do Fundo de Investimento.", "Cadastrar");
+            }
         }
 
     }

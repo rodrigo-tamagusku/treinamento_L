@@ -11,9 +11,21 @@ namespace WPF_App.Stock.Model
             name = stockName;
             code = stockCode;
         }
-        
 
-        public string code { get; set; }
+        private string _code;
+        public string code
+        {
+            get
+            {
+                return _code;
+            }
+            set
+            {
+                _code = value;
+                OnPropertyChanged("code");
+            }
+                
+        }
         private string _name;
         public string name
         {

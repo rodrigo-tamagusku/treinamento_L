@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\App.xaml
-21683148750
+5168459208
 
-11-181622062
+151859436829
 13-1505183044
-View\MainWindow.xaml;View\ReadWindow.xaml;
+View\DeleteWindow.xaml;View\MainWindow.xaml;View\CreateWindow.xaml;View\UpdateWindow.xaml;View\ReadWindow.xaml;
 
 False
 

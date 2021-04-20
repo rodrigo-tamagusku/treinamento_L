@@ -142,13 +142,13 @@ node* deleteNode(node *N, int key){
 	        return temp;
 		}									//caso que há duas sub-arvores
 		node *temp=N->right;				//Vou procurar à direita o menor valor de nó
-		if(temp->left==NULL){				//esse primeiro nó é o menor
+		if(temp->left==NULL){				//se esse primeiro nó já é o menor
 			N->right=temp->right;			//penduro o restante da sub-árvore adequadamente
 		}
 		else {
 			node *hold;						//hold tem o papel de nó exatamente anterior ao temp
 			while(temp->left!=NULL){		//caminho até achar o nó que não tem filho à esquerda. Significa que é o menor nó da subárvore de N->right
-				hold = temp;
+				hold = temp;				//hold é pai do temp
 				temp=temp->left;
 			}								//achei o menor valor temp
 			hold->left=temp->right;			// quando eu removo temp, eu quero pendurar a sua única sub-árvore(que é temp-> right) no hold.

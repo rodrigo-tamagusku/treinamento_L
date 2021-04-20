@@ -15,3 +15,9 @@ C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\MainWindow.g.cs
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\MainWindow.baml
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\ReadWindow.g.cs
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\ReadWindow.baml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateWindow.g.cs
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateWindow.baml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\CreateWindow.g.cs
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\CreateWindow.baml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\DeleteWindow.g.cs
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\DeleteWindow.baml

@@ -9,9 +9,11 @@
     <StackPanel Orientation="Vertical" Margin="20">
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Digite um código: "></TextBlock>
-            <TextBox x:Name="Detalhes" Width="100"></TextBox>
+            <TextBox x:Name="Code" Width="100"></TextBox>
             <Button Content="Ver Detalhes" Click="Detail_Click"></Button>
         </StackPanel>
+        <!--<TextBlock Text="{Binding StockFromCode(Code.text).name}"></TextBlock>-->
+        <TextBlock Text="Hi"></TextBlock>
         <ListView ItemsSource="{Binding Stock}">
             <ListView.View>
                 <GridView>
