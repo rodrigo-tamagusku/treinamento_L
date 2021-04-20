@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_App.View"
         xmlns:m="clr-namespace:WPF_App.Stock.ViewModel"
         mc:Ignorable="d"
-        Title="Cadastro de Investimentos" Height="200" Width="550">
+        Title="Cadastro de Investimentos" Height="350" Width="550">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,6 +24,24 @@
             <Button Click="Button_Click_Visualizar" Margin="2" Width="100">Visualizar</Button>
             <Button Click="Button_Click_Atualizar" Margin="2" Width="100">Atualizar</Button>
             <Button Click="Button_Click_Deletar" Margin="2" Width="100">Deletar</Button>
+            <StackPanel Orientation="Horizontal" Grid.Column="1">
+                <TextBox x:Name="caixaStringTeste1" Text="{Binding stringTeste, UpdateSourceTrigger=Default}"></TextBox>
+                <TextBlock Text="com Default/Lost Focus"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1">
+                <TextBox x:Name="caixaStringTeste2" Text="{Binding stringTeste,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <TextBlock Text="com PropertyChanged"></TextBlock>
+            </StackPanel>
+            <!--<StackPanel Orientation="Horizontal" Grid.Column="1">
+                <TextBox x:Name="caixaStringTeste3" Text="{Binding stringTeste,UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBlock Text="com LostFocus"></TextBlock>
+            </StackPanel>-->
+            <!--<StackPanel Orientation="Horizontal" Grid.Column="1">
+                <TextBox x:Name="caixaStringTeste4" Text="{Binding stringTeste,UpdateSourceTrigger=Explicit}"></TextBox>
+                <TextBlock Text="com Explicit"></TextBlock>
+            </StackPanel>-->
+            <TextBlock Text="{Binding stringTeste, StringFormat= O conteudo é {0} dentro da TextBox}"></TextBlock>
+            <Button Margin="2" Width="100" Content="Faz nada"></Button>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <TextBlock Margin="10">Lista de Ações:</TextBlock>

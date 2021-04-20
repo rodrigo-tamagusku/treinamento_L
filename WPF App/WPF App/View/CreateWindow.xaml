@@ -18,7 +18,7 @@
 
         <Button Content="Cadastrar" Click="Cadastrar_Click"></Button>
 
-        <ListView ItemsSource="{Binding Stock, UpdateSourceTrigger=Default}">
+        <ListView ItemsSource="{Binding Stock, UpdateSourceTrigger=PropertyChanged}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name, Mode=TwoWay, UpdateSourceTrigger=Default}"></GridViewColumn>
@@ -26,7 +26,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListBox ItemsSource="{Binding Stock}">
+        <ListBox ItemsSource="{Binding Stock, UpdateSourceTrigger=PropertyChanged}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -36,7 +36,25 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-          
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
+            <TextBox x:Name="caixaStringTeste1" Text="{Binding stringTeste, UpdateSourceTrigger=Default}"></TextBox>
+            <TextBlock Text="com Default/Lost Focus"></TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
+            <TextBox x:Name="caixaStringTeste2" Text="{Binding stringTeste,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Text="com PropertyChanged"></TextBlock>
+        </StackPanel>
+        <!--<StackPanel Orientation="Horizontal" Grid.Column="1">
+                <TextBox x:Name="caixaStringTeste3" Text="{Binding stringTeste,UpdateSourceTrigger=LostFocus}"></TextBox>
+                <TextBlock Text="com LostFocus"></TextBlock>
+            </StackPanel>-->
+        <!--<StackPanel Orientation="Horizontal" Grid.Column="1">
+                <TextBox x:Name="caixaStringTeste4" Text="{Binding stringTeste,UpdateSourceTrigger=Explicit}"></TextBox>
+                <TextBlock Text="com Explicit"></TextBlock>
+            </StackPanel>-->
+        <TextBlock Text="{Binding stringTeste, StringFormat= O conteudo é {0} dentro da TextBox}"></TextBlock>
+        <Button Margin="2" Width="100" Content="Faz nada"></Button>
+
 
         <Button Content="Voltar" Width="70" Click="Back_Click"></Button>
 

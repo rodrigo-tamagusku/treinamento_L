@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,6 @@ namespace WPF_App.View
         {
             InitializeComponent();
             this.Dados=Dados;
-
         }
         private void Detail_Click(object sender, RoutedEventArgs e)
         {
@@ -43,5 +43,6 @@ namespace WPF_App.View
             MessageBox.Show(caixaCode.Text + "adicionado", "Cadastro");
             //this.DataContext.CreateStock(caixaName.Text, caixaCode.Text);
         }
+        
     }
 }

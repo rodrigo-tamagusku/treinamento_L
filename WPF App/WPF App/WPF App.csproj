@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Command\ObservableCollection.cs" />
     <Compile Include="Command\StockUpdateCommand.cs" />
     <Compile Include="Model\Fund.cs" />
     <Compile Include="ViewModel\FundViewModel.cs" />

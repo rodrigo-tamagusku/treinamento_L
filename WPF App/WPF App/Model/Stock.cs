@@ -22,7 +22,7 @@ namespace WPF_App.Stock.Model
             set
             {
                 _code = value;
-                OnPropertyChanged("code");
+                //OnPropertyChanged("code");
             }
                 
         }
@@ -36,9 +36,10 @@ namespace WPF_App.Stock.Model
             set
             {
                 _name = value;
-                OnPropertyChanged("name");     // verifico se name mudou atraves de evento
+                //OnPropertyChanged("name");     // verifico se name mudou atraves de evento
             }
         }
+
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -55,4 +56,5 @@ namespace WPF_App.Stock.Model
         }
         #endregion
     }
+
 }

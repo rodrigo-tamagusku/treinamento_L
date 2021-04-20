@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,6 @@ namespace WPF_App.View
             _produtos = new StockViewModel();
             DataContext = _produtos;
         }
-
         private void StockRadioChecked(object sender, RoutedEventArgs e)
         {
 
@@ -119,5 +119,6 @@ namespace WPF_App.View
             }
         }
 
+        
     }
 }
