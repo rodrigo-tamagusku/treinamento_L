@@ -96,7 +96,7 @@ namespace WPF_App.ViewModel
             private set
             {
                 listProducts = value;
-                OnPropertyChanged("FinancialProducts");
+                //OnPropertyChanged("FinancialProducts");       //Apenas para list<>
             }
         }
 

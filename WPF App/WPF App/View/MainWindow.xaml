@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_App.View"
-        xmlns:m="clr-namespace:WPF_App.ViewModel"
+        xmlns:m="clr-namespace:WPF_App.MainWindow.ViewModel"
         mc:Ignorable="d"
         Title="Cadastro de Investimentos" Height="350" Width="690">
 
@@ -44,23 +44,27 @@
             <Button Margin="2" Width="100" Content="Faz nada"></Button>-->
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <TextBlock Margin="10">Lista de Ações:</TextBlock>
-            <ListView x:Name="StockList" ItemsSource="{Binding listProduct}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name}"></GridViewColumn>
-                        <GridViewColumn Header="Code" DisplayMemberBinding="{Binding code}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <Grid DataContext="{Binding Path=ProductFinVM}">    
+                <TextBlock Margin="10">Lista de Ações:</TextBlock>
+                <ListView x:Name="StockList" ItemsSource="{Binding FinancialProducts}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn></GridViewColumn>
+                            <!--<GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name}"></GridViewColumn>-->
+                            <!--<GridViewColumn Header="Code" DisplayMemberBinding="{Binding code}"></GridViewColumn>-->
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
         </StackPanel>
         <StackPanel Grid.Column="2">
             <TextBlock Margin="10">Lista de Fundos:</TextBlock>
-            <ListView ItemsSource="{Binding Stock}">
+            <ListView ItemsSource="{Binding testeString}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name}"></GridViewColumn>
-                        <GridViewColumn Header="Code" DisplayMemberBinding="{Binding code}"></GridViewColumn>
+                        <GridViewColumn/>
+                        <!--<GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name}"></GridViewColumn>
+                        <GridViewColumn Header="Code" DisplayMemberBinding="{Binding code}"></GridViewColumn>-->
                     </GridView>
                 </ListView.View>
             </ListView>

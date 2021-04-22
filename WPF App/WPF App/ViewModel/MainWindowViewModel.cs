@@ -12,35 +12,28 @@ using System.Windows.Input;
 
 namespace WPF_App.MainWindow.ViewModel
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel: ObservableObject
     {
         public ICommand CreateCommand { get; private set; }
         public ICommand ReadCommand { get; private set; }
         public ICommand UpdateCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
-        private FinancialProductViewModel _Dados;
-        public FinancialProductViewModel Dados
-        {
-            get
-            {
-                return _Dados;
-            }
-            private set
-            {
-                _Dados = value;
-            }
-        }
+        public FinancialProductViewModel ProdutoFinVM { get; set; }
+      
         public ObservableCollection<FinancialProduct> listProduct   //busca lista na ViewModel de produto criada
         {
             get
             {
-                return Dados.FinancialProducts;
+                return ProdutoFinVM.FinancialProducts;      //FinancialProducts é o public que retorna a Lista de Prod.Financ.
             }
         }
 
+        public List<string> testeString { get; set; }
+
         public MainWindowViewModel()
         {
-            Dados = new FinancialProductViewModel();
+            testeString = new List<string>();
+            ProdutoFinVM = new FinancialProductViewModel();
             this.InstanciaComandos();
         }
 
@@ -54,7 +47,10 @@ namespace WPF_App.MainWindow.ViewModel
 
         private void CreateLine(object itemTabela)
         {
-            Dados.AddFinancialProductToList("NEW", "NEW");
+            ProdutoFinVM.AddFinancialProductToList("NEW", "NEW");
+            testeString.Add("testeCampo");
+            testeString = new List<string>(testeString);
+            OnPropertyChanged("testeString");
             //MessageBox.Show("Cadastro Efetuado");
             //CreateWindow createWindow = new CreateWindow();
             //createWindow.DataContext = window.DataContext;       
@@ -63,15 +59,16 @@ namespace WPF_App.MainWindow.ViewModel
         }
         private void ReadLine(object itemTabela)
         {
-            MessageBox.Show("Nome: " + ((FinancialProduct)itemTabela).name + "\n" +"Código: " + ((FinancialProduct)itemTabela).code,"Visualizar");
+            MessageBox.Show("Nome: " + ((FinancialProduct)itemTabela).name + "\n" +
+                            "Código: " + ((FinancialProduct)itemTabela).code,"Visualizar");
         }
         private void UpdateLine(object itemTabela)
         {
-            Dados.UpdateFinancialProduct((FinancialProduct)itemTabela);
+            ProdutoFinVM.UpdateFinancialProduct((FinancialProduct)itemTabela);
         }
         private void DeleteLine(object itemTabela)
         {
-            Dados.DeleteFinancialProduct((FinancialProduct)itemTabela);
+            ProdutoFinVM.DeleteFinancialProduct((FinancialProduct)itemTabela);
         }
         public bool HasItemSelected(object itemTabela)
         {
