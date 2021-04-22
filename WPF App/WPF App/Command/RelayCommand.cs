@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace WPF_App.Command
 {
-    class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         readonly Action<object> _execute;
         readonly Predicate<object> _canExecute;

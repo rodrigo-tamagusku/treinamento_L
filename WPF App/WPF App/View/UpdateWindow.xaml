@@ -5,22 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_App.View"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800">
+        Title="Atualizando Produto" Width="300" Height="250">
     <StackPanel Orientation="Vertical" Margin="20">
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Digite um código: "></TextBlock>
-            <TextBox x:Name="Detalhes" Width="100"></TextBox>
-            <Button Content="Ver Detalhes" Click="Detail_Click"></Button>
+            <TextBlock Text="Atualize o nome: "></TextBlock>
+            <TextBox x:Name="boxName" Text="{Binding name}" Width="150"></TextBox>
         </StackPanel>
-        <ListView ItemsSource="{Binding Stock}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name}"></GridViewColumn>
-                    <GridViewColumn Header="Code" DisplayMemberBinding="{Binding code}"></GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
+        <TextBlock Text="{Binding name, Mode=OneTime, StringFormat=Nome Original: {0}}"></TextBlock>
+        <TextBlock></TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Atualize código: "></TextBlock>
+            <TextBox x:Name="boxCode" Text="{Binding code}" Width="150"></TextBox>
+        </StackPanel>
+        <TextBlock Text="{Binding code, Mode=OneTime, StringFormat=Código Original: {0}}"></TextBlock>
+        <TextBlock></TextBlock>
         <Button Content="Voltar" Width="70" Click="Back_Click"></Button>
 
     </StackPanel>

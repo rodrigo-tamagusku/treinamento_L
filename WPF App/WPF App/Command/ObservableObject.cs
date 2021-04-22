@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WPF_App.Command
 {
-    public class ObservableCollection : INotifyPropertyChanged
+    public class ObservableObject : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged Members
 

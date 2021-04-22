@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_App.Model;
 
 namespace WPF_App.View
 {
@@ -23,9 +24,10 @@ namespace WPF_App.View
         {
             InitializeComponent();
         }
-        private void Detail_Click(object sender, RoutedEventArgs e)
+        public UpdateWindow(IFinancialProduct financialProduct)
         {
-            MessageBox.Show("Detalhes do Fundo: ", Detalhes.Text);
+            InitializeComponent();
+            DataContext = financialProduct;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

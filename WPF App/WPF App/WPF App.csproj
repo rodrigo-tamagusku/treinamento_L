@@ -56,27 +56,16 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
-    <Compile Include="Command\ObservableCollection.cs" />
-    <Compile Include="Command\StockUpdateCommand.cs" />
+    <Compile Include="Command\ObservableObject.cs" />
+    <Compile Include="Model\IFinancialProduct.cs" />
     <Compile Include="Model\Fund.cs" />
+    <Compile Include="Model\FinancialProduct.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\FundViewModel.cs" />
-    <Compile Include="ViewModel\StockViewModel.cs" />
-    <Compile Include="View\DeleteWindow.xaml.cs">
-      <DependentUpon>DeleteWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\CreateWindow.xaml.cs">
-      <DependentUpon>CreateWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModel\FinancialProductViewModel.cs" />
     <Compile Include="View\UpdateWindow.xaml.cs">
       <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ReadWindow.xaml.cs">
-      <DependentUpon>ReadWindow.xaml</DependentUpon>
-    </Compile>
-    <Page Include="View\DeleteWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -89,17 +78,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\CreateWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\UpdateWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\ReadWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
