@@ -13,5 +13,31 @@ C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.pdb
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.csprojAssemblyReference.cache
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\MainWindow.g.cs
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\MainWindow.baml
-C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateWindow.g.cs
-C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateWindow.baml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\Google.Protobuf.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\MySql.Data.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Buffers.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Memory.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\Zstandard.Net.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\Google.Protobuf.pdb
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\Google.Protobuf.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\MySql.Data.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Buffers.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Memory.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.csproj.CopyComplete
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateFundWindow.g.cs
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateShareWindow.g.cs
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateFundWindow.baml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateShareWindow.baml

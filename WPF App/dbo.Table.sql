@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Table]
+(
+	[code] NVARCHAR(50) NOT NULL PRIMARY KEY, 
+    [name] NVARCHAR(50) NULL
+)

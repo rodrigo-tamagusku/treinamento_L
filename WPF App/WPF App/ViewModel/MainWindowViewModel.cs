@@ -12,73 +12,85 @@ using System.Windows.Input;
 
 namespace WPF_App.MainWindow.ViewModel
 {
-    public class MainWindowViewModel: ObservableObject
+    public class MainWindowViewModel: BaseNotifyPropertyChanged
     {
-        public ICommand CreateCommand { get; private set; }
+        public ICommand CreateShareCommand { get; private set; }
+        public ICommand CreateFundCommand { get; private set; }
         public ICommand ReadCommand { get; private set; }
         public ICommand UpdateCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
         public FinancialProductViewModel ProdutoFinVM { get; set; }
       
-        public ObservableCollection<FinancialProduct> listProduct   //busca lista na ViewModel de produto criada
-        {
-            get
-            {
-                return ProdutoFinVM.FinancialProducts;      //FinancialProducts é o public que retorna a Lista de Prod.Financ.
-            }
-        }
+        //public ObservableCollection<FinancialProduct> listProduct   //busca lista na ViewModel de produto criada
+        //{
+        //    get
+        //    {
+        //        return ProdutoFinVM.FinancialProducts;      //FinancialProducts é o public que retorna a Lista de Prod.Financ.
+        //    }
+        //}
 
-        public List<string> testeString { get; set; }
+        //public List<string> testeString { get; set; }
 
         public MainWindowViewModel()
         {
-            testeString = new List<string>();
             ProdutoFinVM = new FinancialProductViewModel();
             this.InstanciaComandos();
         }
 
         private void InstanciaComandos()
         {
-            CreateCommand = new RelayCommand(CreateLine);
+            CreateShareCommand = new RelayCommand(CreateShareLine);
+            CreateFundCommand = new RelayCommand(CreateFundLine);
             ReadCommand = new RelayCommand(ReadLine, HasItemSelected);
             UpdateCommand = new RelayCommand(UpdateLine, HasItemSelected);
             DeleteCommand = new RelayCommand(DeleteLine, HasItemSelected);
         }
 
-        private void CreateLine(object itemTabela)
+        private void CreateShareLine(object itemListView)
         {
-            ProdutoFinVM.AddFinancialProductToList("NEW", "NEW");
-            testeString.Add("testeCampo");
-            testeString = new List<string>(testeString);
-            OnPropertyChanged("testeString");
+            ProdutoFinVM.AddShareToList();
+            //testeString.Add("testeCampo");
+            //testeString = new List<string>(testeString);
+            //OnPropertyChanged("testeString");
             //MessageBox.Show("Cadastro Efetuado");
             //CreateWindow createWindow = new CreateWindow();
             //createWindow.DataContext = window.DataContext;       
             //createWindow.Show();
             //if (!listProduct.Any())
         }
-        private void ReadLine(object itemTabela)
+        private void CreateFundLine(object itemListView)
         {
-            MessageBox.Show("Nome: " + ((FinancialProduct)itemTabela).name + "\n" +
-                            "Código: " + ((FinancialProduct)itemTabela).code,"Visualizar");
+            ProdutoFinVM.AddFundToList();
+            //testeString.Add("testeCampo");
+            //testeString = new List<string>(testeString);
+            //OnPropertyChanged("testeString");
+            //MessageBox.Show("Cadastro Efetuado");
+            //CreateWindow createWindow = new CreateWindow();
+            //createWindow.DataContext = window.DataContext;       
+            //createWindow.Show();
+            //if (!listProduct.Any())
         }
-        private void UpdateLine(object itemTabela)
+        private void ReadLine(object itemListView)
         {
-            ProdutoFinVM.UpdateFinancialProduct((FinancialProduct)itemTabela);
+            MessageBox.Show("Nome: " + ((IFinancialProduct)itemListView).name,"Visualizar");
         }
-        private void DeleteLine(object itemTabela)
+        private void UpdateLine(object itemListView)
         {
-            ProdutoFinVM.DeleteFinancialProduct((FinancialProduct)itemTabela);
+            ProdutoFinVM.UpdateFinancialProduct((IFinancialProduct)itemListView);
         }
-        public bool HasItemSelected(object itemTabela)
+        private void DeleteLine(object itemListView)
         {
-            if (itemTabela == null)
+            ProdutoFinVM.DeleteFinancialProduct((IFinancialProduct)itemListView);
+        }
+        public bool HasItemSelected(object itemListView)
+        {
+            if (itemListView == null)
             {
                 return false;
-            }
-            else if (!listProduct.Any()) //há itens na lista
-            {
-                return false;
+            //}
+            //else if (!listProduct.Any()) //há itens na lista
+            //{
+            //    return false;
             }
             else
                 return true;
