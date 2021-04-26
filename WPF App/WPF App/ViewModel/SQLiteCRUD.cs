@@ -8,26 +8,39 @@ using WPF_App.Model;
 
 namespace WPF_App.ViewModel
 {
-    public class SQLiteCRUD : CRUD
+    public class SQLiteCRUD : ICRUD
     {
-        public void preencheListaComExemplos(ObservableCollection<IFinancialProduct> listProducts)
+        public SQLiteCRUD()
+        {
+
+        }
+        public void UpdateTheListView(ObservableCollection<IFinancialProduct> listProducts)
         {
             using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
             {
-                connection.DeleteAll<Share>();
-                connection.DeleteAll<Fund>();
-                connection.Insert(new Share("Petrobras PETR3", "PETR3"));
-                connection.Insert(new Fund("Fundos Imobiliários BTLG11", "Imobiliário", "Lmóvel (Híbrido)"));
-                connection.Insert(new Fund("Vinci Shopping Centers", "Imobiliário", "Shoppings"));
-                connection.Insert(new Share("Tesla, Inc.", "TSLA"));
-                connection.Insert(new Fund("Brb Liquidez FI Renda FIxa", "Renda Fixa", "Bancário"));
-                connection.Insert(new Fund("BB MULTIMERCADO LP FX BALANCED INVESTIMENTO NO EXTERIOR PRIVATE", "Multimercado", "Investimento no Exterior"));
                 connection.CreateTable<Share>();
                 connection.CreateTable<Fund>();
                 listProducts = ReadDatabase(listProducts);
             }
         }
-        public ObservableCollection<IFinancialProduct> ReadDatabase(ObservableCollection<IFinancialProduct> listProducts)
+        public void preencheListaComExemplos(ObservableCollection<IFinancialProduct> listProducts)
+        {
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
+            {
+                //connection.DeleteAll<Share>();
+                //connection.DeleteAll<Fund>();
+                //connection.Insert(new Share("Petrobras PETR3", "PETR3"));
+                //connection.Insert(new Fund("Fundos Imobiliários BTLG11", "Imobiliário", "Lmóvel (Híbrido)"));
+                //connection.Insert(new Fund("Vinci Shopping Centers", "Imobiliário", "Shoppings"));
+                //connection.Insert(new Share("Tesla, Inc.", "TSLA"));
+                //connection.Insert(new Fund("Brb Liquidez FI Renda FIxa", "Renda Fixa", "Bancário"));
+                //connection.Insert(new Fund("BB MULTIMERCADO LP FX BALANCED INVESTIMENTO NO EXTERIOR PRIVATE", "Multimercado", "Investimento no Exterior"));
+                connection.CreateTable<Share>();
+                connection.CreateTable<Fund>();
+                listProducts = ReadDatabase(listProducts);
+            }
+        }
+        private ObservableCollection<IFinancialProduct> ReadDatabase(ObservableCollection<IFinancialProduct> listProducts)
         {
 
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.databasePath))
@@ -57,7 +70,9 @@ namespace WPF_App.ViewModel
             using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
             {
                 connection.Insert(new Share());
-                listProducts = ReadDatabase(listProducts);
+                listProducts.Add(new Share());
+                //pegar id
+                //listProducts = ReadDatabase(listProducts);
             }
 
         }
@@ -67,7 +82,9 @@ namespace WPF_App.ViewModel
             using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
             {
                 connection.Insert(new Fund());
-                listProducts = ReadDatabase(listProducts);
+                listProducts.Add(new Fund());
+                //pegar id
+                //listProducts = ReadDatabase(listProducts);
             }
         }
         public void DeleteFinancialProduct(ObservableCollection<IFinancialProduct> listProducts,IFinancialProduct financialProduct)
@@ -80,13 +97,18 @@ namespace WPF_App.ViewModel
         }
         public void UpdateFinancialProduct(ObservableCollection<IFinancialProduct> listProducts,IFinancialProduct financialProduct)
         {
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
+            {
+                //connection.Delete(financialProduct);
+                //listProducts = ReadDatabase(listProducts);
+            }
             //if (cliente.Id != null)
             //{
-            //    cmd.CommandText = "UPDATE Clientes SET Nome=@Nome, Email=@Email WHERE Id=@Id";
-            //    cmd.Parameters.AddWithValue("@Id", cliente.Id);
-            //    cmd.Parameters.AddWithValue("@Nome", cliente.Nome);
-            //    cmd.Parameters.AddWithValue("@Email", cliente.Email);
-            //    cmd.ExecuteNonQuery();
+            //    connection.CommandText = "UPDATE Clientes SET Nome=@Nome, Email=@Email WHERE Id=@Id";
+            //    connection.Parameters.AddWithValue("@Id", cliente.Id);
+            //    connection.Parameters.AddWithValue("@Nome", cliente.Nome);
+            //    connection.Parameters.AddWithValue("@Email", cliente.Email);
+            //    connection.ExecuteNonQuery();
 
             //}
         }

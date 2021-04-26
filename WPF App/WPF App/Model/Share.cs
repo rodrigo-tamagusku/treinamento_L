@@ -93,7 +93,7 @@ namespace WPF_App.Model
         public void AtualizaEmNovaJanela()
         {
             UpdateShareWindow updateWindow = new UpdateShareWindow(this);
-            updateWindow.Show();
+            updateWindow.ShowDialog();
         }
     }
 

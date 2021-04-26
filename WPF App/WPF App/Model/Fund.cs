@@ -109,7 +109,7 @@ namespace WPF_App.Model
         public void AtualizaEmNovaJanela()
         {
             UpdateFundWindow updateWindow = new UpdateFundWindow(this);
-            updateWindow.Show();
+            updateWindow.ShowDialog();
         }
     }
 }

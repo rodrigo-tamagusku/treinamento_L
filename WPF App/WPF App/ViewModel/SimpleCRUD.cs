@@ -8,10 +8,20 @@ using WPF_App.Model;
 
 namespace WPF_App.ViewModel
 {
-    public class SimpleCRUD : CRUD
-    {        
+    public class SimpleCRUD : ICRUD
+    {
+        public SimpleCRUD()
+        {
+
+        }
+        public void UpdateTheListView(ObservableCollection<IFinancialProduct> listProducts)
+        {
+            listProducts.Clear();
+        }
+
         public void preencheListaComExemplos(ObservableCollection<IFinancialProduct> listProducts)
         {
+            listProducts.Clear();
             listProducts.Add(new Share("Petrobras PETR3", "PETR3"));
             listProducts.Add(new Fund("Fundos Imobiliários BTLG11", "Imobiliário", "Lmóvel (Híbrido)"));
             listProducts.Add(new Fund("Vinci Shopping Centers", "Imobiliário", "Shoppings"));
@@ -23,7 +33,6 @@ namespace WPF_App.ViewModel
         public void AddShareToList(ObservableCollection<IFinancialProduct> listProducts)
         {
             listProducts.Add(new Share());
-
         }
         public void AddFundToList(ObservableCollection<IFinancialProduct> listProducts)
         {

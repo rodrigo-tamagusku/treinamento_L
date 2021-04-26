@@ -42,11 +42,11 @@
 //            listFund.Remove(fund);
 //        }
 
-//        public void AtualizaTelaPorModificarList()
-//        {
-//            //this.Stock = new List<Stock>(this.Stock);
-//            OnPropertyChanged("Stock");
-//        }
+//public void AtualizaTelaPorModificarList()
+//{
+//    this.Stock = new List<Stock>(this.Stock);
+//    OnPropertyChanged("Stock");
+//}
 
 //        public void DeleteStockFromCode(string code)
 //        {

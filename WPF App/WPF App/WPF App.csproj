@@ -121,7 +121,7 @@
     <Compile Include="Model\IFinancialProduct.cs" />
     <Compile Include="Model\Fund.cs" />
     <Compile Include="SQLConnection\SQLConnection.cs" />
-    <Compile Include="ViewModel\CRUD.cs" />
+    <Compile Include="ViewModel\ICRUD.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\FundViewModel.cs" />
     <Compile Include="ViewModel\FinancialProductViewModel.cs" />
