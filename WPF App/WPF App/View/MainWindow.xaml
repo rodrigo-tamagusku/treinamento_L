@@ -9,10 +9,10 @@
         mc:Ignorable="d"
         Title="Cadastro de Investimentos" Height="350" Width="800">
 
-    <Window.Resources>
+    <!--<Window.Resources>
         <WPF_App:BancoDDataSet x:Key="bancoDDataSet"/>
         <CollectionViewSource x:Key="tableViewSource" Source="{Binding Table, Source={StaticResource bancoDDataSet}}"/>
-    </Window.Resources>
+    </Window.Resources>-->
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -29,9 +29,13 @@
                 <Button Command="{Binding CreateShareCommand}" Margin="2" Width="100" Content="Cadastrar Ação"/>
                 <Button Command="{Binding CreateFundCommand}" Margin="2" Width="100" Content="Cadastrar Fundo"/>
             </StackPanel>
-            <Button Command="{Binding ReadCommand}" CommandParameter="{Binding SelectedItem, ElementName=StockList}" Margin="2" Width="100" Content="Visualizar"/>
-            <Button Command="{Binding UpdateCommand}" CommandParameter="{Binding SelectedItem, ElementName=StockList}" Margin="2" Width="100" Content="Atualizar"/>
-            <Button Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem, ElementName=StockList}" Margin="2" Width="100" Content="Deletar"/>
+            <Button Command="{Binding ReadCommand}" CommandParameter="{Binding SelectedItem, ElementName=ShareList}" Margin="2" Width="100" Content="Visualizar"/>
+            <Button Command="{Binding UpdateCommand}" CommandParameter="{Binding SelectedItem, ElementName=ShareList}" Margin="2" Width="100" Content="Atualizar"/>
+            <Button Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem, ElementName=ShareList}" Margin="2" Width="100" Content="Deletar"/>
+
+            <Button Command="{Binding ReadCommand}" CommandParameter="{Binding SelectedItem, ElementName=ShareListSQL}" Margin="2" Width="100" Content="Visualizar"/>
+            <Button Command="{Binding UpdateCommand}" CommandParameter="{Binding SelectedItem, ElementName=ShareListSQL}" Margin="2" Width="100" Content="Atualizar"/>
+            <Button Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem, ElementName=ShareListSQL}" Margin="2" Width="100" Content="Deletar"/>
             <!--<StackPanel Orientation="Horizontal" Grid.Column="1">
                 <TextBox x:Name="caixaStringTeste1" Text="{Binding stringTeste, UpdateSourceTrigger=Default}"></TextBox>
                 <TextBlock Text="com Default/Lost Focus"></TextBlock>
@@ -55,10 +59,27 @@
             <TextBlock Margin="10"><Run Text="Lista de Ações:"/></TextBlock>
             <Grid DataContext="{Binding ProdutoFinVM}">
                 <TextBlock Margin="10"><Run Text="Lista de Ações:"/></TextBlock>
-                <ListView x:Name="StockList" ItemsSource="{Binding FinancialProducts}">
+                <ListView x:Name="ShareList" ItemsSource="{Binding FinancialProducts}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Categoria" DisplayMemberBinding="{Binding categoria}"/>
+                            <!--<GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>-->
+                            <GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name}" Width="100"/>
+                            <GridViewColumn Header="Sigla" DisplayMemberBinding="{Binding code}"/>
+                            <GridViewColumn Header="tipo" DisplayMemberBinding="{Binding tipo}"/>
+                            <GridViewColumn Header="setor" DisplayMemberBinding="{Binding setor}" Width="100"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <TextBlock Margin="10"><Run Text="Lista de Ações:"/></TextBlock>
+            <Grid DataContext="{Binding ProdutoFinVM}">
+                <TextBlock Margin="10"><Run Text="Lista de Ações:"/></TextBlock>
+                <ListView x:Name="ShareListSQL" ItemsSource="{Binding Produtos}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Categoria" DisplayMemberBinding="{Binding categoria}"/>
+                            <!--<GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>-->
                             <GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name}" Width="100"/>
                             <GridViewColumn Header="Sigla" DisplayMemberBinding="{Binding code}"/>
                             <GridViewColumn Header="tipo" DisplayMemberBinding="{Binding tipo}"/>

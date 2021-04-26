@@ -1,26 +1,77 @@
 ﻿
+using System;
+using System.Diagnostics;
+using System.Collections.Generic;
+using System.Windows.Input;
+using WPF_App.Model;
+using System.Collections.Specialized;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.ComponentModel;
+using WPF_App.Command;
+using WPF_App.View;
+using System.Windows;
+using SQLite;
 namespace WPF_App.ViewModel
 {
-    using System;
-    using System.Diagnostics;
-    using System.Collections.Generic;
-    using System.Windows.Input;
-    using WPF_App.Model;
-    using System.Collections.Specialized;
-    using System.Collections.ObjectModel;
-    using System.Linq;
-    using System.ComponentModel;
-    using WPF_App.Command;
-    using WPF_App.View;
-    using System.Windows;
 
     public class FinancialProductViewModel : BaseNotifyPropertyChanged
     {
+        //public List<IFinancialProduct> Produtos { get; set; }        
+        public CRUD crud;
         public FinancialProductViewModel()
         {
             listProducts = new ObservableCollection<IFinancialProduct>();
-            preencheListaComExemplos();
+            //crud = new SimpleCRUD();
+            crud = new SQLiteCRUD();
+            crud.preencheListaComExemplos(FinancialProducts);
             //UpdateCommand = new StockUpdateCommand(this);
+            //CriaTabelaSQLite();
+        }
+
+        private void CriaTabelaSQLite()
+        {
+            //Produtos = new List<IFinancialProduct>();
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
+            {
+                connection.DeleteAll<Share>();
+                connection.DeleteAll<Fund>();
+                connection.Insert(new Share("Petrobras PETR3", "PETR3"));
+                connection.Insert(new Fund("Fundos Imobiliários BTLG11", "Imobiliário", "Lmóvel (Híbrido)"));
+                connection.Insert(new Fund("Vinci Shopping Centers", "Imobiliário", "Shoppings"));
+                connection.Insert(new Share("Tesla, Inc.", "TSLA"));
+                connection.Insert(new Fund("Brb Liquidez FI Renda FIxa", "Renda Fixa", "Bancário"));
+                connection.Insert(new Fund("BB MULTIMERCADO LP FX BALANCED INVESTIMENTO NO EXTERIOR PRIVATE", "Multimercado", "Investimento no Exterior"));
+                connection.CreateTable<Share>();
+                connection.CreateTable<Fund>();
+                ReadDatabase();
+            }
+        }
+        void ReadDatabase()
+        {
+            using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.databasePath))
+            {
+                //conn.CreateTable<Share>();
+                //FinancialProducts = new ObservableCollection<IFinancialProduct>();
+                listProducts.Clear();
+                List<IFinancialProduct> listAtivos = new List<IFinancialProduct>(conn.Table<Share>().ToList());
+                foreach (var ativos in listAtivos)
+                {
+                    listProducts.Add(ativos);
+                }
+                //conn.CreateTable<Fund>();
+                listAtivos = new List<IFinancialProduct>(conn.Table<Fund>().ToList());
+                foreach (var ativos in listAtivos)
+                {
+                    listProducts.Add(ativos);
+                }
+                //this.Shares = new List<Share>(this.Shares);
+                //OnPropertyChanged("Produtos");
+            }
+            //if (Produtos != null)
+            //{
+            //    //SharesListView.ItemsSource = Shares;
+            //}
         }
 
         public void preencheListaComExemplos()
@@ -51,22 +102,40 @@ namespace WPF_App.ViewModel
         //    */
         public void AddShareToList()
         {
-            listProducts.Add(new Share());
+            //listProducts.Add(new Share()); 
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
+            {
+                connection.Insert(new Share());
+                ReadDatabase();
+            }
+
         }
         public void AddFundToList()
         {
-            listProducts.Add(new Fund());
+            //listProducts.Add(new Fund());
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
+            {
+                connection.Insert(new Fund());
+                ReadDatabase();
+            }
         }
 
         public void DeleteFinancialProduct(IFinancialProduct financialProduct)
         {
             listProducts.Remove(financialProduct);
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
+            {
+                connection.Delete(financialProduct);
+                ReadDatabase();
+            }
         }
 
         public void AtualizaTelaPorModificarList()
         {
             //this.Stock = new List<Stock>(this.Stock);
-            OnPropertyChanged("FinancialProducts");
+            //OnPropertyChanged("FinancialProducts");
+            //this.Produtos = new List<IFinancialProduct>(this.Produtos);
+            OnPropertyChanged("Produtos");
         }
 
         //public void DeleteFinancialProductFromCode(string code)
@@ -80,6 +149,11 @@ namespace WPF_App.ViewModel
         public void UpdateFinancialProduct(IFinancialProduct recebido)
         {
             recebido.AtualizaEmNovaJanela();
+            using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
+            {
+                //connection.Delete(financialProduct);
+                ReadDatabase();
+            }
             //if (recebido.categoria == "Ação")
             //{
             //    UpdateShareWindow updateWindow = new UpdateShareWindow(recebido);
@@ -138,16 +212,16 @@ namespace WPF_App.ViewModel
         //    //Debug.Assert(false, String.Format("{0} was updated", Stock.name));
         //}
         ///*
-        #region INotifyCollectionChanged
-        private void OnNotifyCollectionChanged(NotifyCollectionChangedEventArgs args)
-        {
-            if (this.CollectionChanged != null)
-            {
-                this.CollectionChanged(this, args);
-            }
-        }
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-        #endregion INotifyCollectionChanged
+        //#region INotifyCollectionChanged
+        //private void OnNotifyCollectionChanged(NotifyCollectionChangedEventArgs args)
+        //{
+        //    if (this.CollectionChanged != null)
+        //    {
+        //        this.CollectionChanged(this, args);
+        //    }
+        //}
+        //public event NotifyCollectionChangedEventHandler CollectionChanged;
+        //#endregion INotifyCollectionChanged
         /*
         /*
         #region INotifyCollectionChanged Members  

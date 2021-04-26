@@ -36,8 +36,17 @@ C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Memory.xml
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.csproj.CopyComplete
-C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateFundWindow.g.cs
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateShareWindow.g.cs
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateFundWindow.baml
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\UpdateShareWindow.baml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App_Content.g.cs
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\runtimes\win-x64\native\e_sqlite3.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\runtimes\win-arm\native\e_sqlite3.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLite-net.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLitePCLRaw.batteries_v2.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLitePCLRaw.core.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLitePCLRaw.nativelibrary.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLitePCLRaw.provider.dynamic_cdecl.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLite-net.xml

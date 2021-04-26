@@ -1,10 +1,11 @@
-﻿
+﻿using System;                               //Permite manipular evento
+using System.ComponentModel;                //Da Biblioteca .NET, permite herdar o INotifyPropertyChanged para usar PropertyChangedEventHandler e PropertyChangedEventArgs
+using WPF_App.Command;
+using WPF_App.View;
+using SQLite;
+
 namespace WPF_App.Model
 {
-    using System;                               //Permite manipular evento
-    using System.ComponentModel;                //Da Biblioteca .NET, permite herdar o INotifyPropertyChanged para usar PropertyChangedEventHandler e PropertyChangedEventArgs
-    using WPF_App.Command;
-    using WPF_App.View;
 
     public class Fund : BaseNotifyPropertyChanged, IFinancialProduct //Herdo
     {
@@ -23,6 +24,20 @@ namespace WPF_App.Model
         private string stringNula()
         {
             return "_vazio_"; //#N/A
+        }
+        private int _Id;
+        [PrimaryKey, AutoIncrement]
+        public int Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                _Id = value;
+                OnPropertyChanged("Id");
+            }
         }
 
         private string _categoria;
