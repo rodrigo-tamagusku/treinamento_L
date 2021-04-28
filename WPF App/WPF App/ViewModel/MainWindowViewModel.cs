@@ -41,6 +41,7 @@ namespace WPF_App.MainWindow.ViewModel
             sqlitecrud = new SQLiteCRUD();
             simplecrud = new SimpleCRUD();
             ProdutoFinVM = new FinancialProductViewModel(sqlitecrud);
+            //ProdutoFinVM = new FinancialProductViewModel(simplecrud);
             this.InstanciaComandos();
         }
 

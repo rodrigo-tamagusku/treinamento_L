@@ -10,7 +10,6 @@ C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.csproj.GenerateReso
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.csproj.CoreCompileInputs.cache
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.exe
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.pdb
-C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.csprojAssemblyReference.cache
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\MainWindow.g.cs
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\View\MainWindow.baml
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\BouncyCastle.Crypto.dll
@@ -44,9 +43,16 @@ C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App_Content.g.cs
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\runtimes\win-arm\native\e_sqlite3.dll
-C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLite-net.dll
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLitePCLRaw.batteries_v2.dll
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLitePCLRaw.core.dll
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLitePCLRaw.nativelibrary.dll
 C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLitePCLRaw.provider.dynamic_cdecl.dll
-C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\SQLite-net.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\EntityFramework.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Data.SQLite.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Data.SQLite.EF6.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\EntityFramework.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\bin\Debug\System.Data.SQLite.xml
+C:\Users\digo_\Desktop\Luz\WPF App\WPF App\obj\Debug\WPF App.csprojAssemblyReference.cache

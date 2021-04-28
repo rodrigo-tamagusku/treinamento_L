@@ -11,7 +11,7 @@ using System.ComponentModel;
 using WPF_App.Command;
 using WPF_App.View;
 using System.Windows;
-using SQLite;
+
 namespace WPF_App.ViewModel
 {
 
@@ -39,6 +39,7 @@ namespace WPF_App.ViewModel
             FinancialProducts = new ObservableCollection<IFinancialProduct>();
             this.crud = crud;
             UpdateTheListView();        //atualizo a tela
+            //preencheListaComExemplos();
         }
 
         private void UpdateTheListView()

@@ -14,32 +14,32 @@ namespace WPF_App.ViewModel
         {
 
         }
-        public void UpdateTheListView(ObservableCollection<IFinancialProduct> listProducts)
+        public void UpdateTheListView(ICollection<IFinancialProduct> listProducts)
         {
             listProducts.Clear();
         }
 
-        public void preencheListaComExemplos(ObservableCollection<IFinancialProduct> listProducts)
+        public void preencheListaComExemplos(ICollection<IFinancialProduct> listProducts)
         {
             listProducts.Clear();
-            listProducts.Add(new Share("Petrobras PETR3", "PETR3"));
-            listProducts.Add(new Fund("Fundos Imobiliários BTLG11", "Imobiliário", "Lmóvel (Híbrido)"));
-            listProducts.Add(new Fund("Vinci Shopping Centers", "Imobiliário", "Shoppings"));
-            listProducts.Add(new Share("Tesla, Inc.", "TSLA"));
-            listProducts.Add(new Fund("Brb Liquidez FI Renda FIxa", "Renda Fixa", "Bancário"));
-            listProducts.Add(new Fund("BB MULTIMERCADO LP FX BALANCED INVESTIMENTO NO EXTERIOR PRIVATE", "Multimercado", "Investimento no Exterior"));
+            listProducts.Add(new Stock("Petrobras PETR3", "PETR3"));
+            listProducts.Add(new Fund("Fundos Imobiliários BTLG11", "Lmóvel (Híbrido)", "Imobiliário"));
+            listProducts.Add(new Fund("Vinci Shopping Centers", "Shoppings", "Imobiliário"));
+            listProducts.Add(new Stock("Tesla, Inc.", "TSLA"));
+            listProducts.Add(new Fund("Brb Liquidez FI Renda FIxa", "Bancário", "Renda Fixa"));
+            listProducts.Add(new Fund("BB MULTIMERCADO LP FX BALANCED INVESTIMENTO NO EXTERIOR PRIVATE", "Investimento no Exterior", "Multimercado"));
         }
 
-        public void AddShareToList(ObservableCollection<IFinancialProduct> listProducts)
+        public void AddShareToList(ICollection<IFinancialProduct> listProducts)
         {
-            listProducts.Add(new Share());
+            listProducts.Add(new Stock());
         }
-        public void AddFundToList(ObservableCollection<IFinancialProduct> listProducts)
+        public void AddFundToList(ICollection<IFinancialProduct> listProducts)
         {
             listProducts.Add(new Fund());
         }
 
-        public void DeleteFinancialProduct(ObservableCollection<IFinancialProduct> listProducts,IFinancialProduct financialProduct)
+        public void DeleteFinancialProduct(ICollection<IFinancialProduct> listProducts,IFinancialProduct financialProduct)
         {
             listProducts.Remove(financialProduct);
         }
@@ -52,7 +52,7 @@ namespace WPF_App.ViewModel
         //    OnPropertyChanged("Shares");
         //}
 
-        public void UpdateFinancialProduct(ObservableCollection<IFinancialProduct> listProducts,IFinancialProduct recebido)
+        public void UpdateFinancialProduct(ICollection<IFinancialProduct> listProducts,IFinancialProduct recebido)
         {
             recebido.AtualizaEmNovaJanela();
             //if (recebido.categoria == "Ação")

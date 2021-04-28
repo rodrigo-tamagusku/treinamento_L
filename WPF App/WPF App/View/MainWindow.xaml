@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_App.View"
         xmlns:m="clr-namespace:WPF_App.MainWindow.ViewModel"
-        xmlns:WPF_App="clr-namespace:WPF_App" x:Class="WPF_App.View.MainWindow"
+        xmlns:WPF_App="clr-namespace:WPF_App" 
+        x:Class="WPF_App.View.MainWindow"
         mc:Ignorable="d"
         Title="Cadastro de Investimentos" Height="350" Width="800">
 

@@ -2,7 +2,7 @@
 using System.ComponentModel;                //Da Biblioteca .NET, permite herdar o INotifyPropertyChanged para usar PropertyChangedEventHandler e PropertyChangedEventArgs
 using WPF_App.Command;
 using WPF_App.View;
-using SQLite;
+using System.Data.SQLite;
 
 namespace WPF_App.Model
 {
@@ -11,11 +11,25 @@ namespace WPF_App.Model
     {
         public Fund()
         {
-            this.categoria = "Fundo";
+            this.categoria = "Fund";
         }
-        public Fund(string name,string tipo, string setor)
+        public Fund(int Id)
         {
-            this.categoria = "Fundo";
+            this.categoria = "Fund";
+            this.Id = Id;
+        }
+        public Fund(string name,string setor, string tipo)
+        {
+            this.categoria = "Fund";
+            this.name = name;
+            this.setor = setor;
+            this.tipo = tipo;
+
+        }
+        public Fund(int Id, string categoria, string name, string setor, string tipo)
+        {
+            this.Id = Id;
+            this.categoria = categoria;
             this.name = name;
             this.setor = setor;
             this.tipo = tipo;
@@ -26,7 +40,7 @@ namespace WPF_App.Model
             return "_vazio_"; //#N/A
         }
         private int _Id;
-        [PrimaryKey, AutoIncrement]
+        //[PrimaryKey, AutoIncrement]
         public int Id
         {
             get

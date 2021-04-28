@@ -15,15 +15,15 @@
         <TextBlock></TextBlock>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Atualize tipo: "></TextBlock>
-            <TextBox x:Name="boxTipo" Text="{Binding tipo}" Width="150"></TextBox>
+            <TextBox x:Name="boxTipo" Text="{Binding setor}" Width="150"></TextBox>
         </StackPanel>
-        <TextBlock Text="{Binding tipo, Mode=OneTime, StringFormat=Tipo Original: {0}}"></TextBlock>
+        <TextBlock Text="{Binding setor, Mode=OneTime, StringFormat=Setor Original: {0}}"></TextBlock>
         <TextBlock></TextBlock>
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Atualize setor: "></TextBlock>
-            <TextBox x:Name="boxSetor" Text="{Binding setor}" Width="150"></TextBox>
+            <TextBox x:Name="boxSetor" Text="{Binding tipo}" Width="150"></TextBox>
         </StackPanel>
-        <TextBlock Text="{Binding setor, Mode=OneTime, StringFormat=Setor Original: {0}}"></TextBlock>
+        <TextBlock Text="{Binding tipo, Mode=OneTime, StringFormat=Tipo Original: {0}}"></TextBlock>
         <Button Content="Voltar" Width="70" Click="Back_Click"></Button>
 
     </StackPanel>
