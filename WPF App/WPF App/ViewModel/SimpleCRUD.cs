@@ -30,18 +30,20 @@ namespace WPF_App.ViewModel
             listProducts.Add(new Fund("BB MULTIMERCADO LP FX BALANCED INVESTIMENTO NO EXTERIOR PRIVATE", "Investimento no Exterior", "Multimercado"));
         }
 
-        public void AddShareToList(ICollection<IFinancialProduct> listProducts)
+        public bool AddShareToList(ICollection<IFinancialProduct> listProducts)
         {
+            //return listProducts.Add(new Stock());
             listProducts.Add(new Stock());
+            return true;
         }
         public void AddFundToList(ICollection<IFinancialProduct> listProducts)
         {
             listProducts.Add(new Fund());
         }
 
-        public void DeleteFinancialProduct(ICollection<IFinancialProduct> listProducts,IFinancialProduct financialProduct)
+        public bool DeleteFinancialProduct(ICollection<IFinancialProduct> listProducts,IFinancialProduct financialProduct)
         {
-            listProducts.Remove(financialProduct);
+            return listProducts.Remove(financialProduct);
         }
 
         //public void AtualizaTelaPorModificarList()

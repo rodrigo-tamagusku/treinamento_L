@@ -33,10 +33,10 @@
             <Button Command="{Binding ReadCommand}" CommandParameter="{Binding SelectedItem, ElementName=ProdutosFinanceiros}" Margin="2" Width="100" Content="Visualizar"/>
             <Button Command="{Binding UpdateCommand}" CommandParameter="{Binding SelectedItem, ElementName=ProdutosFinanceiros}" Margin="2" Width="100" Content="Atualizar"/>
             <Button Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem, ElementName=ProdutosFinanceiros}" Margin="2" Width="100" Content="Deletar"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Command="{Binding SimpleDataCommand}" Margin="2" Width="100" Content="Dados Runtime"/>
                 <Button Command="{Binding SQLiteDataCommand}" Margin="2" Width="100" Content="Dados SQLite"/>
-            </StackPanel>
+            </StackPanel>-->
             <!--<Button Command="{Binding ReadCommand}" CommandParameter="{Binding SelectedItem, ElementName=ShareListSQL}" Margin="2" Width="100" Content="Visualizar"/>
             <Button Command="{Binding UpdateCommand}" CommandParameter="{Binding SelectedItem, ElementName=ShareListSQL}" Margin="2" Width="100" Content="Atualizar"/>
             <Button Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem, ElementName=ShareListSQL}" Margin="2" Width="100" Content="Deletar"/>-->
@@ -70,8 +70,8 @@
                             <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"/>
                             <GridViewColumn Header="Nome" DisplayMemberBinding="{Binding name}" Width="100"/>
                             <GridViewColumn Header="Sigla" DisplayMemberBinding="{Binding code}"/>
-                            <GridViewColumn Header="tipo" DisplayMemberBinding="{Binding tipo}"/>
                             <GridViewColumn Header="setor" DisplayMemberBinding="{Binding setor}" Width="100"/>
+                            <GridViewColumn Header="tipo" DisplayMemberBinding="{Binding tipo}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

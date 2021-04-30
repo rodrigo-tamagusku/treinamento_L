@@ -11,10 +11,10 @@ using System.ComponentModel;
 using WPF_App.Command;
 using WPF_App.View;
 using System.Windows;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace WPF_App.ViewModel
 {
-
     public class FinancialProductViewModel : BaseNotifyPropertyChanged
     {
         private ICRUD _crud;       //Tipo de CRUD: Com banco de dados SQLite ou sem
@@ -41,6 +41,21 @@ namespace WPF_App.ViewModel
             UpdateTheListView();        //atualizo a tela
             //preencheListaComExemplos();
         }
+        public bool NotificaTelaSePrecisa(ICollection<IFinancialProduct> FinancialProducts)
+        {
+            if (FinancialProducts is INotifyCollectionChanged)  //Caso ObservableCollection e alguns outros
+            {
+                                                                //MessageBox.Show("Não precisa atualizar");
+                return false;
+            }
+            else
+            {                                                   //Caso List, Collection e outros
+                                                                //MessageBox.Show("Notifica tela");
+                FinancialProducts = new List<IFinancialProduct>(FinancialProducts); //Tem um tipo melhor que List?
+                OnPropertyChanged("FinancialProducts");
+            }
+            return true;
+        }
 
         private void UpdateTheListView()
         {
@@ -51,42 +66,36 @@ namespace WPF_App.ViewModel
             crud.preencheListaComExemplos(FinancialProducts);
         }
 
-        public void AddShareToList()
+        public bool AddShareToList()
         {
-            crud.AddShareToList(FinancialProducts);
-
+            bool adicionou;
+            adicionou = crud.AddShareToList(FinancialProducts);
+            NotificaTelaSePrecisa(FinancialProducts);
+            return adicionou;
         }
         public void AddFundToList()
         {
             crud.AddFundToList(FinancialProducts);
+            NotificaTelaSePrecisa(FinancialProducts);
         }
 
-        public void DeleteFinancialProduct(IFinancialProduct financialProduct)
+        public bool DeleteFinancialProduct(IFinancialProduct financialProduct)
         {
-            crud.DeleteFinancialProduct(FinancialProducts, financialProduct);
+            bool removeu;
+            removeu = crud.DeleteFinancialProduct(FinancialProducts, financialProduct);
+            NotificaTelaSePrecisa(FinancialProducts);
+            return removeu;
         }
 
         public void UpdateFinancialProduct(IFinancialProduct recebido)
         {
             crud.UpdateFinancialProduct(FinancialProducts, recebido);
+            NotificaTelaSePrecisa(FinancialProducts);
         }
 
-        //public IFinancialProduct GetFinancialProductFromCode(string code)
-        //{
-        //    //return listStock.Find(x => x.code == code);
-        //    return listProducts.Single(x => x.code == code);
+        private ICollection<IFinancialProduct> listProducts;
 
-        //}
-
-        //public bool CanUpdate
-        //{
-        //    get;
-        //    set;
-        //}
-
-        private ObservableCollection<IFinancialProduct> listProducts;
-
-        public ObservableCollection<IFinancialProduct> FinancialProducts
+        public ICollection<IFinancialProduct> FinancialProducts
         {
             get
             {
@@ -98,18 +107,6 @@ namespace WPF_App.ViewModel
                 //OnPropertyChanged("FinancialProducts");       //Apenas para list<>
             }
         }
-
-        //public ICommand UpdateCommand
-        //{
-        //    get;
-        //    set;
-        //}
-
-        //public void SaveChanges()
-        //{
-        //    //Debug.Assert(false, String.Format("{0} was updated", Stock.name));
-        //}
-        ///*
         //#region INotifyCollectionChanged
         //private void OnNotifyCollectionChanged(NotifyCollectionChangedEventArgs args)
         //{
@@ -120,12 +117,6 @@ namespace WPF_App.ViewModel
         //}
         //public event NotifyCollectionChangedEventHandler CollectionChanged;
         //#endregion INotifyCollectionChanged
-        /*
-        /*
-        #region INotifyCollectionChanged Members  
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-        #endregion
-        */
         
     }
 }

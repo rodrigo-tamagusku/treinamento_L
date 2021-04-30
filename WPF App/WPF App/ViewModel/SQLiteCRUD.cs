@@ -5,23 +5,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WPF_App.Model;
-using System.Data.SQLite;
 using System.Windows;
+using System.Data.SQLite;
 
 namespace WPF_App.ViewModel
 {
-    //Nota: Não é garantido criar tabela ou arquivo.
+    //Nota: Não é garantido criar tabela ou arquivo. Admito que eles estão criados
     public class SQLiteCRUD : ICRUD
     {
-        private static string ConnectionString; 
+        private string ConnectionString; 
         private System.Data.SQLite.SQLiteConnection connection;
         private System.Data.SQLite.SQLiteCommand cmd;
-        private SQLiteDataReader allRead;
+        private System.Data.SQLite.SQLiteDataReader allRead;
         public SQLiteCRUD()
         {
             ConnectionString = @"Data Source=C:\Users\digo_\Documents\ProdutosFin.db;Version=3"; 
-            connection = new SQLiteConnection(ConnectionString);
-            
+            connection = new System.Data.SQLite.SQLiteConnection(ConnectionString);
         }
         public void UpdateTheListView(ICollection<IFinancialProduct> listProducts)
         {
@@ -29,7 +28,7 @@ namespace WPF_App.ViewModel
             {
                 connection.Open();
                 cmd = new System.Data.SQLite.SQLiteCommand(connection);
-                cmd.Prepare();
+                //cmd.Prepare();
                 //connection.CreateTable<Stock>();
                 //connection.CreateTable<Fund>();
                 cmd.CommandText = "SELECT * FROM Stock";
@@ -47,7 +46,7 @@ namespace WPF_App.ViewModel
                     MessageBox.Show("Erro ao montar a lista de ações: " + e.Message);
                 }
                 cmd = new System.Data.SQLite.SQLiteCommand(connection);
-                cmd.Prepare();
+                //cmd.Prepare();
                 //connection.CreateTable<Stock>();
                 //connection.CreateTable<Fund>();
                 cmd.CommandText = "SELECT * FROM Fund";
@@ -57,7 +56,11 @@ namespace WPF_App.ViewModel
                     while (allRead.Read())
                     {
                         listProducts.Add(new Fund(allRead.GetInt32(0), allRead.GetString(1), allRead.GetString(2), allRead.GetString(3), allRead.GetString(4)));
-                        //listProducts.Add(new Stock((int)allRead["Id"], (string)allRead["categoria"], (string)allRead["name"], (string)allRead["code"])); //Isso não converte.
+                        //listProducts.Add(new Fund(
+                        //(int)allRead["Id"],
+                        //(string)allRead["categoria"],
+                        //(string)allRead["name"],
+                        //(string)allRead["code"])); //Isso não converte.
                     }
                 }
                 catch (Exception e)
@@ -91,7 +94,7 @@ namespace WPF_App.ViewModel
             //    listProducts = ReadDatabase(listProducts);
             //}
         }
-        public void AddShareToList(ICollection<IFinancialProduct> listProducts)
+        public bool AddShareToList(ICollection<IFinancialProduct> listProducts)
         {
             //listProducts.Add(new Share()); 
             //using (SQLite.SQLiteConnection connection = new SQLite.SQLiteConnection(App.databasePath))
@@ -104,12 +107,12 @@ namespace WPF_App.ViewModel
             //}
             try
             {
-                int IdInserido; 
                 connection.Open();
+                int IdInserido;
                 cmd = new System.Data.SQLite.SQLiteCommand(connection);
                 Stock stock = new Stock();
                 cmd.CommandText = "INSERT INTO Stock (categoria,name,code) VALUES (@categoria,@name,@code)";
-                cmd.Prepare();
+                //cmd.Prepare();
                 //cmd.Parameters.AddWithValue("@Id", stock.Id);
                 cmd.Parameters.AddWithValue("@categoria", stock.categoria);
                 cmd.Parameters.AddWithValue("@name", stock.name);
@@ -119,15 +122,18 @@ namespace WPF_App.ViewModel
                     cmd.ExecuteNonQuery();
                     IdInserido = (int)connection.LastInsertRowId;
                     listProducts.Add(new Stock(IdInserido));
+                    return true;
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show("Erro em executar comando: " + e.Message);
+                    return false;
                 }
             }
             catch(Exception e)
             {
                 MessageBox.Show("Erro em conexão do banco de dados: " + e.Message);
+                return false;
             }
             finally
             {
@@ -138,13 +144,13 @@ namespace WPF_App.ViewModel
         {
             try
             {
-                int IdInserido;
                 connection.Open();
+                int IdInserido;
                 cmd = new System.Data.SQLite.SQLiteCommand(connection);
                 {
                     Fund fund = new Fund();
                     cmd.CommandText = "INSERT INTO Fund (categoria,name,tipo,setor) VALUES (@categoria,@name,@tipo,@setor)";
-                    cmd.Prepare();
+                    //cmd.Prepare();
                     //cmd.Parameters.AddWithValue("@Id", fund.Id);
                     cmd.Parameters.AddWithValue("@categoria", fund.categoria);
                     cmd.Parameters.AddWithValue("@name", fund.name);
@@ -171,7 +177,7 @@ namespace WPF_App.ViewModel
                 connection.Close();
             }
         }
-        public void DeleteFinancialProduct(ICollection<IFinancialProduct> listProducts,IFinancialProduct financialProduct)
+        public bool DeleteFinancialProduct(ICollection<IFinancialProduct> listProducts,IFinancialProduct financialProduct)
         {
             try
             {
@@ -191,25 +197,28 @@ namespace WPF_App.ViewModel
                         else
                         {
                             MessageBox.Show("Produto de categoria desconhecida");
-                            return;
+                            return false;
                         }
                     }
-                    cmd.Prepare();
+                    //cmd.Prepare();
                     cmd.Parameters.AddWithValue("@Id", financialProduct.Id);
                     try
                     {
                         cmd.ExecuteNonQuery();
                         listProducts.Remove(financialProduct);
+                        return true;
                     }
                     catch (Exception e)
                     {
                         MessageBox.Show("Erro ao remover fundo: " + e);
+                        return false;
                     }
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show("Erro em conexão do banco de dados: " + e.Message);
+                return false;
             }
             finally
             {
@@ -226,7 +235,7 @@ namespace WPF_App.ViewModel
             try{
                 if (financialProduct.categoria == "Stock")
                 {
-                    financialProduct.AtualizaEmNovaJanela();
+                    financialProduct.AtualizaEmNovaJanela();            //Não deveria atualizar ainda
                     Stock stock = (Stock)financialProduct;
                     connection.Open();
                     cmd = new System.Data.SQLite.SQLiteCommand(connection);
@@ -234,7 +243,7 @@ namespace WPF_App.ViewModel
                         if (stock.Id != 0)
                         {
                             cmd.CommandText = "UPDATE Stock SET name=@name, code=@code WHERE Id=@Id";
-                            cmd.Prepare();
+                            //cmd.Prepare();
                             cmd.Parameters.AddWithValue("@Id", stock.Id);
                             //cmd.Parameters.AddWithValue("@categoria", stock.categoria);
                             cmd.Parameters.AddWithValue("@name", stock.name);
@@ -254,7 +263,7 @@ namespace WPF_App.ViewModel
                 {
                     if (financialProduct.categoria == "Fund")
                     {
-                        financialProduct.AtualizaEmNovaJanela();
+                        financialProduct.AtualizaEmNovaJanela();        //Não deveria atualizar ainda
                         Fund fund = (Fund)financialProduct;
                         connection.Open();
                         cmd = new System.Data.SQLite.SQLiteCommand(connection);
@@ -262,7 +271,7 @@ namespace WPF_App.ViewModel
                             if (fund.Id > 0)
                             {
                                 cmd.CommandText = "UPDATE Fund SET name=@name, tipo=@tipo, setor=@setor WHERE Id=@Id";
-                                cmd.Prepare();
+                                //cmd.Prepare();
                                 cmd.Parameters.AddWithValue("@Id", fund.Id);
                                 cmd.Parameters.AddWithValue("@name", fund.name);
                                 cmd.Parameters.AddWithValue("@tipo", fund.tipo);

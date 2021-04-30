@@ -11,9 +11,9 @@ namespace WPF_App.ViewModel
     //Interface que define o que é obrigatório para adicionar um Banco de Dados ao meu programa
     public interface ICRUD
     {
-        void AddShareToList(ICollection<IFinancialProduct> listProducts);
+        bool AddShareToList(ICollection<IFinancialProduct> listProducts);
         void AddFundToList(ICollection<IFinancialProduct> listProducts);
-        void DeleteFinancialProduct(ICollection<IFinancialProduct> listProducts, IFinancialProduct financialProduct);
+        bool DeleteFinancialProduct(ICollection<IFinancialProduct> listProducts, IFinancialProduct financialProduct);
         void preencheListaComExemplos(ICollection<IFinancialProduct> listProducts);
         void UpdateFinancialProduct(ICollection<IFinancialProduct> listProducts, IFinancialProduct recebido);
         void UpdateTheListView(ICollection<IFinancialProduct> listProducts);

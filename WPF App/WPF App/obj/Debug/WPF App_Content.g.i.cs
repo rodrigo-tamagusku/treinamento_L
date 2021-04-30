@@ -11,5 +11,11 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("e_sqlite3.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("e_sqlite3.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("e_sqlite3.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("microsoft.testplatform.adapterutilities.resources.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("microsoft.testplatform.coreutilities.resources.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("microsoft.visualstudio.testplatform.mstest.testadapter.resources.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("microsoft.visualstudio.testplatform.mstestadapter.platformservices.resources.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("microsoft.visualstudio.testplatform.objectmodel.resources.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("microsoft.visualstudio.testplatform.testframework.resources.dll")]
 
 
