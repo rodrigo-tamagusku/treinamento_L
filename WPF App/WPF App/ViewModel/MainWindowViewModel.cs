@@ -43,11 +43,25 @@ namespace WPF_App.MainWindow.ViewModel
             ProdutoFinVM = new FinancialProductViewModel(sqlitecrud);
             //ProdutoFinVM = new FinancialProductViewModel(simplecrud);
             this.InstanciaComandos();
+            //try
+            //{
+            //    UpdateCommand.Execute(null);
+            //}
+            //catch (Exception e)
+            //{
+            //    MessageBox.Show("Erro: " + e);
+            //}
+        }
+        public MainWindowViewModel(ICRUD icrud)
+        {
+            ProdutoFinVM = new FinancialProductViewModel(icrud);
+            this.InstanciaComandos();
         }
 
         private void InstanciaComandos()
         {
             CreateShareCommand = new RelayCommand(CreateShareLine,HasDatabase);
+                                    //RelayCommand(Execute,CanExecute);
             CreateFundCommand = new RelayCommand(CreateFundLine,HasDatabase);
             ReadCommand = new RelayCommand(ReadLine, HasItemSelected);
             UpdateCommand = new RelayCommand(UpdateLine, HasItemSelected);
@@ -59,18 +73,10 @@ namespace WPF_App.MainWindow.ViewModel
         private void CreateShareLine(object itemListView)
         {
             ProdutoFinVM.AddShareToList();
-            //testeString.Add("testeCampo");
-            //testeString = new List<string>(testeString);
-            //OnPropertyChanged("testeString");
-            //MessageBox.Show("Cadastro Efetuado");
-            //CreateWindow createWindow = new CreateWindow();
-            //createWindow.DataContext = window.DataContext;       
-            //createWindow.Show();
-            //if (!listProduct.Any())
         }
         private void CreateFundLine(object itemListView)
         {
-            ProdutoFinVM.AddFundToList();
+            var retorno = ProdutoFinVM.AddFundToList();
             //testeString.Add("testeCampo");
             //testeString = new List<string>(testeString);
             //OnPropertyChanged("testeString");

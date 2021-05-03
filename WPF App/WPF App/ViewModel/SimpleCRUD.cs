@@ -14,9 +14,10 @@ namespace WPF_App.ViewModel
         {
 
         }
-        public void UpdateTheListView(ICollection<IFinancialProduct> listProducts)
+        public ICollection<IFinancialProduct> UpdateTheListView(ICollection<IFinancialProduct> listProducts)
         {
             listProducts.Clear();
+            return listProducts;
         }
 
         public void preencheListaComExemplos(ICollection<IFinancialProduct> listProducts)
@@ -36,9 +37,11 @@ namespace WPF_App.ViewModel
             listProducts.Add(new Stock());
             return true;
         }
-        public void AddFundToList(ICollection<IFinancialProduct> listProducts)
+        public Fund AddFundToList(ICollection<IFinancialProduct> listProducts)
         {
-            listProducts.Add(new Fund());
+            Fund fundoCriado = new Fund();
+            listProducts.Add(fundoCriado);
+            return fundoCriado;
         }
 
         public bool DeleteFinancialProduct(ICollection<IFinancialProduct> listProducts,IFinancialProduct financialProduct)

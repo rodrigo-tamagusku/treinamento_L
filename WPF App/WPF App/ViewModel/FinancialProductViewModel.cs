@@ -59,7 +59,7 @@ namespace WPF_App.ViewModel
 
         private void UpdateTheListView()
         {
-            crud.UpdateTheListView(FinancialProducts);
+            FinancialProducts = crud.UpdateTheListView(FinancialProducts);
         }
         public void preencheListaComExemplos()
         {
@@ -73,10 +73,12 @@ namespace WPF_App.ViewModel
             NotificaTelaSePrecisa(FinancialProducts);
             return adicionou;
         }
-        public void AddFundToList()
+        public Fund AddFundToList()
         {
-            crud.AddFundToList(FinancialProducts);
+            Fund fundoRetorno = null;
+            fundoRetorno = crud.AddFundToList(FinancialProducts);
             NotificaTelaSePrecisa(FinancialProducts);
+            return fundoRetorno;
         }
 
         public bool DeleteFinancialProduct(IFinancialProduct financialProduct)

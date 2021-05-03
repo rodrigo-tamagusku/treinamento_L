@@ -145,13 +145,12 @@
     <Compile Include="Model\IFinancialProduct.cs" />
     <Compile Include="Model\Fund.cs" />
     <Compile Include="SQLConnection\SQLConnection.cs" />
+    <Compile Include="ViewModel\MockCRUD.cs" />
     <Compile Include="ViewModel\ICRUD.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="Old\FundViewModel.cs" />
     <Compile Include="ViewModel\FinancialProductViewModel.cs" />
     <Compile Include="ViewModel\SimpleCRUD.cs" />
     <Compile Include="ViewModel\SQLiteCRUD.cs" />
-    <Compile Include="Old\UpdateWindowViewModel.cs" />
     <Compile Include="View\UpdateFundWindow.xaml.cs">
       <DependentUpon>UpdateFundWindow.xaml</DependentUpon>
     </Compile>
@@ -206,6 +205,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Old\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.3\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.3\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />

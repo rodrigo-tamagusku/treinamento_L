@@ -22,7 +22,7 @@ namespace WPF_App.ViewModel
             ConnectionString = @"Data Source=C:\Users\digo_\Documents\ProdutosFin.db;Version=3"; 
             connection = new System.Data.SQLite.SQLiteConnection(ConnectionString);
         }
-        public void UpdateTheListView(ICollection<IFinancialProduct> listProducts)
+        public ICollection<IFinancialProduct> UpdateTheListView(ICollection<IFinancialProduct> listProducts)
         {
             try
             {
@@ -44,6 +44,7 @@ namespace WPF_App.ViewModel
                 catch (Exception e)
                 {
                     MessageBox.Show("Erro ao montar a lista de ações: " + e.Message);
+                    return null;
                 }
                 cmd = new System.Data.SQLite.SQLiteCommand(connection);
                 //cmd.Prepare();
@@ -66,16 +67,19 @@ namespace WPF_App.ViewModel
                 catch (Exception e)
                 {
                     MessageBox.Show("Erro ao montar a lista de Fundos: " + e.Message);
+                    return null;
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show("Erro ao acessar Banco de Dados: " + e);
+                return null;
             }
             finally
             {
                 connection.Close();
             }
+            return listProducts;
         }
         public void preencheListaComExemplos(ICollection<IFinancialProduct> listProducts)
         {
@@ -140,7 +144,7 @@ namespace WPF_App.ViewModel
                 connection.Close();
             }
         }
-        public void AddFundToList(ICollection<IFinancialProduct> listProducts)
+        public Fund AddFundToList(ICollection<IFinancialProduct> listProducts)
         {
             try
             {
@@ -160,17 +164,22 @@ namespace WPF_App.ViewModel
                     {
                         cmd.ExecuteNonQuery();
                         IdInserido = (int)connection.LastInsertRowId;
-                        listProducts.Add(new Fund(IdInserido));
+                        Fund fundoCriado = new Fund(IdInserido);
+                        listProducts.Add(fundoCriado);
+                        return fundoCriado;
+
                     }
                     catch (Exception e)
                     {
                         MessageBox.Show("Erro ao inserir fundo: " + e);
+                        return null;
                     }
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show("Erro em conexão do banco de dados: " + e.Message);
+                return null;
             }
             finally
             {

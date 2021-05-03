@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_App.Model;
-using WPF_App.UpdateWindow.ViewModel;
 
 namespace WPF_App.View
 {
