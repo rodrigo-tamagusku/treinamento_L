@@ -36,7 +36,7 @@ namespace WPF_App.ViewModel
         //}
         public FinancialProductViewModel(ICRUD crud)
         {
-            FinancialProducts = new ObservableCollection<IFinancialProduct>();
+            FinancialProducts = new List<IFinancialProduct>();
             this.crud = crud;
             UpdateTheListView();        //atualizo a tela
             //preencheListaComExemplos();
@@ -51,7 +51,7 @@ namespace WPF_App.ViewModel
             else
             {                                                   //Caso List, Collection e outros
                                                                 //MessageBox.Show("Notifica tela");
-                FinancialProducts = new List<IFinancialProduct>(FinancialProducts); //Tem um tipo melhor que List?
+                this.FinancialProducts = new List<IFinancialProduct>(FinancialProducts); //Tem um tipo melhor que List?
                 OnPropertyChanged("FinancialProducts");
             }
             return true;
@@ -76,8 +76,12 @@ namespace WPF_App.ViewModel
         public Fund AddFundToList()
         {
             Fund fundoRetorno = null;
-            fundoRetorno = crud.AddFundToList(FinancialProducts);
-            NotificaTelaSePrecisa(FinancialProducts);
+            fundoRetorno = crud.CreateFund();
+            if (fundoRetorno != null)
+            {
+                FinancialProducts.Add(fundoRetorno);
+                NotificaTelaSePrecisa(FinancialProducts);
+            }
             return fundoRetorno;
         }
 

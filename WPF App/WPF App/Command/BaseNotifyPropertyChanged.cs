@@ -22,6 +22,7 @@ namespace WPF_App.Command
             if (handler != null)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
+                //handler(this, new PropertyChangedEventArgs(null));
             }
 
         }

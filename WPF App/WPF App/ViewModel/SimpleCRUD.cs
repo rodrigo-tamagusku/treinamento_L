@@ -37,10 +37,10 @@ namespace WPF_App.ViewModel
             listProducts.Add(new Stock());
             return true;
         }
-        public Fund AddFundToList(ICollection<IFinancialProduct> listProducts)
+        public Fund CreateFund()
         {
             Fund fundoCriado = new Fund();
-            listProducts.Add(fundoCriado);
+            //listProducts.Add(fundoCriado);
             return fundoCriado;
         }
 

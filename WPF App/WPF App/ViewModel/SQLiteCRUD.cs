@@ -144,36 +144,34 @@ namespace WPF_App.ViewModel
                 connection.Close();
             }
         }
-        public Fund AddFundToList(ICollection<IFinancialProduct> listProducts)
+        public Fund CreateFund()
         {
             try
             {
                 connection.Open();
                 int IdInserido;
                 cmd = new System.Data.SQLite.SQLiteCommand(connection);
+                Fund fundoCriado = new Fund();
+                cmd.CommandText = "INSERT INTO Fund (categoria,name,tipo,setor) VALUES (@categoria,@name,@tipo,@setor)";
+                //cmd.Prepare();
+                //cmd.Parameters.AddWithValue("@Id", fund.Id);
+                cmd.Parameters.AddWithValue("@categoria", fundoCriado.categoria);
+                cmd.Parameters.AddWithValue("@name", fundoCriado.name);
+                cmd.Parameters.AddWithValue("@tipo", fundoCriado.tipo);
+                cmd.Parameters.AddWithValue("@setor", fundoCriado.setor);
+                try
                 {
-                    Fund fund = new Fund();
-                    cmd.CommandText = "INSERT INTO Fund (categoria,name,tipo,setor) VALUES (@categoria,@name,@tipo,@setor)";
-                    //cmd.Prepare();
-                    //cmd.Parameters.AddWithValue("@Id", fund.Id);
-                    cmd.Parameters.AddWithValue("@categoria", fund.categoria);
-                    cmd.Parameters.AddWithValue("@name", fund.name);
-                    cmd.Parameters.AddWithValue("@tipo", fund.tipo);
-                    cmd.Parameters.AddWithValue("@setor", fund.setor);
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                        IdInserido = (int)connection.LastInsertRowId;
-                        Fund fundoCriado = new Fund(IdInserido);
-                        listProducts.Add(fundoCriado);
-                        return fundoCriado;
+                    cmd.ExecuteNonQuery();
+                    IdInserido = (int)connection.LastInsertRowId;
+                    fundoCriado.Id = IdInserido;
+                    //listProducts.Add(fundoCriado);
+                    return fundoCriado;
 
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show("Erro ao inserir fundo: " + e);
-                        return null;
-                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Erro ao inserir fundo: " + e);
+                    return null;
                 }
             }
             catch (Exception e)

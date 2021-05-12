@@ -17,7 +17,7 @@ namespace WPF_App.ViewModel
         {
             return RetornaBooleanoParaReturnDoAdd;
         }
-        public Fund AddFundToList(ICollection<IFinancialProduct> listProducts) 
+        public Fund CreateFund() 
         {
             return RetornoFundoCriado;
         }

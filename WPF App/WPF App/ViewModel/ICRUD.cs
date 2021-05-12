@@ -12,7 +12,7 @@ namespace WPF_App.ViewModel
     public interface ICRUD
     {
         bool AddShareToList(ICollection<IFinancialProduct> listProducts);
-        Fund AddFundToList(ICollection<IFinancialProduct> listProducts);
+        Fund CreateFund();
         bool DeleteFinancialProduct(ICollection<IFinancialProduct> listProducts, IFinancialProduct financialProduct);
         void preencheListaComExemplos(ICollection<IFinancialProduct> listProducts);
         void UpdateFinancialProduct(ICollection<IFinancialProduct> listProducts, IFinancialProduct recebido);

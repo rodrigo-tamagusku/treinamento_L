@@ -18,19 +18,18 @@ namespace WPF_App.ViewModel
         //[TestInitialize]
         //[TestCleanup]
         [TestMethod]
-        public void UpdateCommandExecute_InsereFundoEEleEstaNaListaComId_ComMock()
+        public void CreateCommandExecute_InsereFundoEEleEstaNaListaComId_ComMock()
         {
             //Arrange
             MockCRUD mockcrud = new MockCRUD();
-            Fund fundo = new Fund("Nome", "Setor", "Tipo");
+            Fund fundo = new Fund();
             //Mock
             mockcrud.RetornoFundoCriado = fundo;
             mockcrud.RetornoFundoCriado.Id = 20;
             mockcrud.RetornoListaBD = new ObservableCollection<IFinancialProduct>();
             MainWindowViewModel MWVM = new MainWindowViewModel(mockcrud);
             //Act
-            (MWVM.CreateFundCommand).CanExecute(fundo);
-            MWVM.ProdutoFinVM.FinancialProducts.Add(mockcrud.RetornoFundoCriado); //Meio mock
+            (MWVM.CreateFundCommand).Execute(null); //Parâmetro de .Execute não é utilizado.
             //Assert
             Assert.IsTrue(MWVM.ProdutoFinVM.FinancialProducts.Contains(mockcrud.RetornoFundoCriado));
         }
@@ -44,10 +43,9 @@ namespace WPF_App.ViewModel
             mockcrud.RetornoFundoCriado = fundo;
             mockcrud.RetornoFundoCriado.Id = 20;
             mockcrud.RetornoListaBD = new ObservableCollection<IFinancialProduct>();
-            mockcrud.RetornoListaBD.Add(mockcrud.RetornoFundoCriado);
             MainWindowViewModel MWVM = new MainWindowViewModel(mockcrud);
             //Act
-            (MWVM.CreateFundCommand).CanExecute(fundo);
+            (MWVM.CreateFundCommand).Execute(fundo);
             //Assert
             Assert.IsTrue(MWVM.ProdutoFinVM.FinancialProducts.Count==1);
         }
@@ -67,28 +65,25 @@ namespace WPF_App.ViewModel
             FinancialProductViewModel FPVM = new FinancialProductViewModel(mockcrud);
             //Act
             FPVM.AddFundToList();
-            FPVM.FinancialProducts.Add(mockcrud.RetornoFundoCriado); //Isso o seu programa faz
             //Assert
             Assert.IsTrue(FPVM.FinancialProducts.Count == 3);
         }
         [TestMethod]
-        //[ExpectedException(Exception NullReferenceException)]
-        public void UpdateCommandExecute_UpdateFundoNaListaComListaVazia_RetornaFalse_ComMock()
+        public void UpdateCommandCanExecute_UpdateFundoNaListaSemItemSelecionado_RetornaFalse()
         {
             //Arrange
             MockCRUD mockcrud = new MockCRUD();
             mockcrud.RetornoListaBD = new ObservableCollection<IFinancialProduct>();
             MainWindowViewModel MWVM = new MainWindowViewModel(mockcrud);
-            Fund fundo = new Fund();
-            //Mock
-            //mockcrud.UpdateFinancialProduct(lista,fundo)
+            bool podeExecutar;
             //Act
-            (MWVM.UpdateCommand).CanExecute(fundo);
+            podeExecutar = (MWVM.UpdateCommand).CanExecute(null);
             //Assert
-            Assert.IsFalse(MWVM.ProdutoFinVM.FinancialProducts.Contains(fundo));
+            Assert.IsFalse(podeExecutar);
         }
+        
         [TestMethod]
-        public void UpdateCommandCanExecute_PodeExecutarSeTemFundo()
+        public void UpdateCommandCanExecute_PodeExecutarSeTemFundoSelecionado()
         {
             //Arrange
             MainWindowViewModel MWVM = new MainWindowViewModel();
@@ -108,18 +103,6 @@ namespace WPF_App.ViewModel
             valorRetornado = (MWVM.UpdateCommand).CanExecute(null);
             //Assert
             Assert.IsFalse(valorRetornado);
-        }
-        [TestMethod]
-        public void UpdateCommandCanExecute_NaoPodeExecutarComInt()
-        {
-            //Arrange
-            MainWindowViewModel MWVM = new MainWindowViewModel();
-            bool valorRetornado;
-            int i = 0;
-            //Act
-            valorRetornado = (MWVM.UpdateCommand).CanExecute(i);
-            //Assert
-            Assert.IsTrue(valorRetornado);
         }
         [TestMethod]
         public void NotificaTelaSePrecisa_ObservableCollectionNaoNotifica_ComMock()
@@ -280,11 +263,11 @@ namespace WPF_App.ViewModel
             MockCRUD mockCRUD = new MockCRUD();
             mockCRUD.RetornaBooleanoParaReturnDoAdd = true;
             mockCRUD.RetornoListaBD = new ObservableCollection<IFinancialProduct>();
+            mockCRUD.RetornoFundoCriado = new Fund(1); // Suponho que o BD decide criar o fundo com Id 1
             FinancialProductViewModel FPVM = new FinancialProductViewModel(mockCRUD);
             int resultadoEsperado = 1;
-            Fund resultadoRetornado;
-            mockCRUD.RetornoFundoCriado = new Fund(1); // Suponho que o BD decide criar o fundo com Id 1
-            mockCRUD.RetornoListaBD = new ObservableCollection<IFinancialProduct>();
+            Fund resultadoRetornado = null;
+
             //Act
             resultadoRetornado = FPVM.AddFundToList();
 

@@ -32,8 +32,30 @@ namespace WPF_App.MainWindow.ViewModel
         //        return ProdutoFinVM.FinancialProducts;      //FinancialProducts é o public que retorna a Lista de Prod.Financ.
         //    }
         //}
-
-        //public List<string> testeString { get; set; }
+        private string _stringTeste;
+        public string stringCom
+        {
+            get
+            {
+                return _stringTeste;
+            }
+            set
+            {
+                _stringTeste = value;
+                OnPropertyChanged("stringCom");
+            }
+        }
+        public string stringSem
+        {
+            get
+            {
+                return _stringTeste;
+            }
+            set
+            {
+                _stringTeste = value;
+            }
+        }
 
         public MainWindowViewModel()
         {
@@ -43,14 +65,8 @@ namespace WPF_App.MainWindow.ViewModel
             ProdutoFinVM = new FinancialProductViewModel(sqlitecrud);
             //ProdutoFinVM = new FinancialProductViewModel(simplecrud);
             this.InstanciaComandos();
-            //try
-            //{
-            //    UpdateCommand.Execute(null);
-            //}
-            //catch (Exception e)
-            //{
-            //    MessageBox.Show("Erro: " + e);
-            //}
+
+            _stringTeste = "ValorDefault";
         }
         public MainWindowViewModel(ICRUD icrud)
         {
